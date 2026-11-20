@@ -1,178 +1,586 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demoiselle Pixel - Where Art Meets Technology</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demoiselle Pixel Academy · Studio-Ready courses for VFX, animation &amp; games</title>
+<meta name="description" content="Studio-Ready: four online courses that take you from outside the studio to inside it. Get hired, learn the pipeline, go technical, or build the tools. Taught by Sophie Désaulniers.">
+<meta property="og:title" content="Demoiselle Pixel Academy">
+<meta property="og:description" content="The course that didn't exist when I needed it. Four Studio-Ready courses for VFX, animation and games artists.">
+<meta property="og:image" content="https://demoisellepixel.com/img/sophie-social.jpg">
+<meta property="og:url" content="https://demoisellepixel.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: founder-led academy homepage; full-width bands, 1160px column, four course cards as the core */
+:root {
+  --paper: #F0EFED;
+  --surface: #FAF8F5;
+  --sand: #D6CFB5;
+  --line: #DCD5C6;
+  --ink: #2E2E2E;
+  --muted: #6A6259;
+  --caramel: #C19066;
+  --caramel-ink: #8E5F38;
+  --clay: #A27E69;
+  --slate: #7091A8;
+  --slate-ink: #48687F;
+  --cameo: #5B3A2E;
+  --band: #1E2532;
+  --band-ink: #F0EFED;
+  --band-muted: #B9B4AA;
+  --font-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --font-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1A1D23; --surface: #22262D; --sand: #3A3830; --line: #343841;
+    --ink: #EEEAE3; --muted: #ABA498; --caramel: #D2A27A; --caramel-ink: #E2B892;
+    --clay: #BF9C86; --slate: #8FAEC4; --slate-ink: #A4C0D4; --cameo: #E2C3A8;
+    --band: #12151A; --band-ink: #EEEAE3; --band-muted: #A9A398;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+
+.wrap {
+  max-width: 1160px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.08; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.5rem, 5.6vw, 4.4rem); }
+h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); }
+h3 { font-size: 1.5rem; }
+h1 em, h2 em { color: var(--caramel-ink); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--caramel); outline-offset: 3px; border-radius: 2px; }
+
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--caramel-ink); display: inline-flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--caramel); flex: none; }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 58ch; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font: 600 0.95rem/1 var(--font-body); letter-spacing: 0.02em;
+  padding: 16px 26px; border-radius: 2px; text-decoration: none; cursor: pointer; border: 1.5px solid transparent;
+  transition: transform .15s ease, background .15s ease;
+}
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { transform: translateY(-1px); background: var(--caramel-ink); }
+.btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+.btn-ghost:hover { background: var(--surface); }
+.link-arrow { font: 600 0.82rem/1.2 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--ink); border-bottom: 1.5px solid var(--caramel); padding-bottom: 4px; align-self: flex-start; }
+.link-arrow:hover { color: var(--caramel-ink); }
+
+section { padding-block: clamp(64px, 9vw, 116px); }
+.sec-head { display: flex; flex-direction: column; gap: 16px; max-width: 760px; margin-bottom: 52px; }
+
+.photo { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; background: var(--sand); }
+
+/* Cameo logo, drawn in the current text colour */
+.cameo {
+  display: inline-block; width: 30px; height: 38px; flex: none; background: var(--cameo);
+  -webkit-mask: url("img/cameo.png") center / contain no-repeat; mask: url("img/cameo.png") center / contain no-repeat;
+}
+
+/* Header */
+header.site {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 14px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo .wm { display: flex; flex-direction: column; line-height: 1; }
+.logo .wm b { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.35rem; }
+.logo .wm span { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.32em; margin-top: 5px; color: var(--muted); }
+.nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 0.92rem; font-weight: 500; }
+.nav ul a { text-decoration: none; color: var(--muted); }
+.nav ul a:hover { color: var(--ink); }
+.nav .btn { padding: 12px 18px; font-size: 0.85rem; }
+@media (max-width: 940px) { .nav ul { display: none; } }
+@media (max-width: 420px) { .nav .btn { display: none; } }
+
+/* Hero */
+.hero { padding-block: clamp(44px, 6vw, 84px) clamp(64px, 8vw, 104px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-copy { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-photo { position: relative; min-width: 0; aspect-ratio: 4 / 5; max-width: 100%; }
+.hero-card {
+  position: absolute; left: -24px; bottom: 28px; background: var(--surface); border: 1px solid var(--line);
+  padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; max-width: 250px;
+  box-shadow: 0 24px 50px -30px rgba(30, 37, 50, .5);
+}
+.hero-card b { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.15rem; }
+.hero-card span { font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
+@media (max-width: 900px) { .hero-card { left: 12px; } }
+
+/* Sound familiar */
+.familiar { background: var(--surface); border-block: 1px solid var(--line); }
+.familiar-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); }
+@media (max-width: 860px) { .familiar-grid { grid-template-columns: 1fr; } }
+.familiar-head { display: flex; flex-direction: column; gap: 18px; }
+.familiar-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.familiar-list li { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 20px; padding-block: 20px; border-top: 1px solid var(--line); font-size: 1.12rem; }
+.familiar-list li:last-child { border-bottom: 1px solid var(--line); }
+.familiar-list li::before { content: ""; width: 10px; height: 10px; margin-top: 10px; background: var(--caramel); }
+.familiar-close { margin-top: 26px; font-family: var(--font-display); font-style: italic; font-size: 1.5rem; color: var(--caramel-ink); }
+
+/* Courses */
+.courses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; background: var(--line); border: 1px solid var(--line); }
+@media (max-width: 800px) { .courses { grid-template-columns: 1fr; } }
+.course { background: var(--paper); padding: clamp(26px, 3.5vw, 44px); display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.course-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.course-num { font: 500 0.78rem/1 var(--font-mono); letter-spacing: 0.12em; color: var(--muted); }
+.tag { font: 500 0.68rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 8px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.tag-hot { border-color: var(--caramel); color: var(--caramel-ink); }
+.course .for { font-weight: 600; font-size: 1rem; color: var(--slate-ink); }
+.course h3 { font-size: clamp(1.8rem, 2.8vw, 2.35rem); }
+.course h3 small { display: block; font-family: var(--font-mono); font-style: normal; font-size: 0.68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 8px; font-weight: 400; }
+.shift { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; font-size: 0.95rem; padding: 14px 0; margin: 0; border-block: 1px solid var(--line); }
+.shift dt { font: 500 0.68rem/1.9 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.shift dd { margin: 0; }
+.course ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.course ul li { font-size: 0.8rem; font-weight: 600; padding: 6px 10px; background: var(--surface); border: 1px solid var(--line); }
+.course .link-arrow { margin-top: auto; }
+
+/* The Inside feature */
+.inside { background: var(--surface); border-block: 1px solid var(--line); }
+.inside-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; margin-bottom: 56px; }
+@media (max-width: 900px) { .inside-grid { grid-template-columns: 1fr; } }
+.inside-copy { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.graph { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 30px 60px -40px rgba(30, 37, 50, .45); min-width: 0; }
+.graph-bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); font: 500 0.72rem/1 var(--font-mono); color: var(--muted); letter-spacing: 0.04em; }
+.graph-bar i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--line); margin-right: 5px; }
+.graph svg { display: block; width: 100%; height: auto; }
+.g-wire { stroke: var(--clay); stroke-width: 1.6; fill: none; opacity: .75; }
+.g-node { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+.g-node-hot { fill: var(--ink); stroke: var(--ink); }
+.g-port { fill: var(--slate); }
+.g-port-hot { fill: var(--caramel); }
+.g-label { font-family: var(--font-mono); font-size: 11px; fill: var(--ink); }
+.g-label-hot { fill: var(--paper); }
+.g-dept { font-family: var(--font-mono); font-size: 8.5px; fill: var(--muted); letter-spacing: .08em; }
+.g-dept-hot { fill: var(--caramel); }
+.graph-foot { padding: 12px 14px; border-top: 1px solid var(--line); font-size: 0.82rem; color: var(--muted); }
+.chain-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.chain-list li { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 16px 16px 16px 20px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.chain-list li::before { content: ""; position: absolute; left: -5px; top: 20px; width: 9px; height: 9px; border-radius: 50%; background: var(--slate); }
+.chain-list li::after { content: ""; position: absolute; right: -5px; top: 20px; width: 9px; height: 9px; border-radius: 50%; background: var(--caramel); }
+.chain-list code { font: 500 0.72rem/1 var(--font-mono); color: var(--muted); letter-spacing: .06em; }
+.chain-list span { font-weight: 600; font-size: 0.98rem; line-height: 1.3; }
+.chain-list li.final { background: var(--ink); border-color: var(--ink); }
+.chain-list li.final span { color: var(--paper); }
+.chain-list li.final code { color: var(--caramel); }
+.chain-tools { margin-top: 28px; font-size: 0.95rem; color: var(--muted); }
+.chain-tools b { color: var(--ink); font-weight: 600; }
+
+/* How every lesson works */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+.step { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 2px solid var(--ink); }
+.step b { font: 500 0.78rem/1 var(--font-mono); letter-spacing: .1em; color: var(--caramel-ink); }
+.step h3 { font-size: 1.35rem; }
+.step p { color: var(--muted); font-size: 0.97rem; }
+.step.story { border-top-color: var(--caramel); }
+
+/* Meet Sophie */
+.sophie { background: var(--band); color: var(--band-ink); }
+.sophie-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+@media (max-width: 860px) { .sophie-grid { grid-template-columns: 1fr; } }
+.sophie-photo { aspect-ratio: 4 / 5; max-width: 100%; }
+.sophie-copy { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.sophie h2 em { color: var(--caramel); }
+.sophie .eyebrow { color: var(--caramel); }
+.sophie-copy p { max-width: 62ch; color: var(--band-muted); }
+.sophie-copy p.strong { color: var(--band-ink); font-size: 1.1rem; }
+.sophie .sign { font-family: var(--font-display); font-style: italic; font-size: 1.6rem; color: var(--caramel); }
+
+/* Waitlist */
+.free { background: var(--surface); border-block: 1px solid var(--line); }
+.free .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+@media (max-width: 860px) { .free .wrap { grid-template-columns: 1fr; } }
+.free-copy { display: flex; flex-direction: column; gap: 18px; }
+form.join { display: flex; flex-direction: column; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font: 500 0.75rem/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select { font: 500 1rem/1.2 var(--font-body); color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 2px; padding: 15px 14px; width: 100%; }
+.field input:focus, .field select:focus { outline: 2px solid var(--caramel); outline-offset: 0; border-color: transparent; }
+.row2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+@media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
+.form-msg { font-size: 0.9rem; color: var(--slate-ink); min-height: 1.4em; }
+.privacy { font-size: 0.82rem; color: var(--muted); }
+.privacy b { font-weight: 600; color: var(--ink); user-select: all; }
+
+/* FAQ */
+.faq-grid { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: clamp(32px, 6vw, 96px); }
+@media (max-width: 860px) { .faq-grid { grid-template-columns: 1fr; } }
+.faq-head { display: flex; flex-direction: column; gap: 18px; }
+details { border-top: 1px solid var(--line); }
+details:last-child { border-bottom: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; padding-block: 22px; font-weight: 600; font-size: 1.08rem; display: flex; justify-content: space-between; gap: 20px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-family: var(--font-mono); color: var(--caramel-ink); font-size: 1.2rem; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { padding-bottom: 22px; color: var(--muted); max-width: 64ch; }
+
+/* Open door */
+.door-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+@media (max-width: 860px) { .door-grid { grid-template-columns: 1fr; } }
+.door-copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+.door-copy h2 { max-width: 18ch; }
+.door-photo { aspect-ratio: 4 / 5; max-width: 100%; }
+@media (max-width: 860px) { .door-photo { max-width: 420px; } }
+
+/* Footer */
+footer { background: var(--band); color: var(--band-muted); }
+footer .wrap { padding-block: 56px 32px; display: flex; flex-direction: column; gap: 40px; }
+.motto { font-family: var(--font-display); font-style: italic; font-size: clamp(1.6rem, 3.4vw, 2.4rem); color: var(--band-ink); line-height: 1.15; max-width: 22ch; }
+.foot-cols { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 32px; }
+@media (max-width: 760px) { .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.foot-cols h4 { margin: 0 0 12px; font: 500 0.72rem/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--caramel); }
+.foot-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.92rem; }
+.foot-cols a { text-decoration: none; color: var(--band-muted); }
+.foot-cols a:hover { color: var(--band-ink); }
+footer .logo .wm b { color: var(--band-ink); }
+footer .logo .wm span { color: var(--band-muted); }
+footer .cameo { background: var(--band-ink); }
+.legal { font-size: 0.82rem; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+</style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Demoiselle<br>Pixel</h1>
-            <p class="hero-subtitle">Where Art Meets Technology</p>
-            <nav class="hero-nav">
-                <button class="nav-btn" onclick="scrollToSection('news')">The Latest News</button>
-                <button class="nav-btn" onclick="scrollToSection('courses')">Courses</button>
-            </nav>
-        </div>
-    </section>
 
-    <!-- Featured Article Section -->
-    <section class="content-section section-dark">
-        <article class="featured-article fade-in-scroll">
-            <div class="featured-images">
-                <div class="featured-img"></div>
-                <div class="featured-img"></div>
-            </div>
-            <div class="featured-text">
-                <h2>Now that Demoiselle Pixel's identity has been unmasked, how will the industry greet her arrival?</h2>
-                <p>Beneath the warm glow of candle light, Demoiselle Pixel welcomes you into a world where creativity and technology meet. Our stories follows artists, events and studios stepping into this luminous space, navigating the tension between timeless craft and modern innovation.</p>
-                <p>As their path unfolds, so does the question at the heart of today's digital artistry: how do we stay true to inspiration while embracing the future? Discover our full stories every week.</p>
-            </div>
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Demoiselle Pixel Academy home">
+      <span class="cameo" aria-hidden="true"></span>
+      <span class="wm"><b>Demoiselle Pixel</b><span>ACADEMY</span></span>
+    </a>
+    <ul>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#inside">The Inside</a></li>
+      <li><a href="#sophie">Meet Sophie</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Studio-Ready · Online courses for VFX, animation &amp; games</span>
+        <h1>The course that didn't exist <em>when I needed it.</em></h1>
+        <p class="lede">Whether you're just starting out, sending applications into silence, ready to go technical, or curious how the pipeline gets built, there's a way in. I'll show you how studios really work, mistakes included. Mostly mine.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#courses">Find your course</a>
+          <a class="btn btn-ghost" href="#sophie">Meet Sophie</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img class="photo" src="img/sophie-portrait.jpg" width="1024" height="1536" alt="Sophie Désaulniers in a pink blazer, smiling" fetchpriority="high">
+        <div class="hero-card">
+          <b>Hi, I'm Sophie.</b>
+          <span>Lighting and comp artist, Foundry specialist, Emily Carr instructor. Now, your guide inside the studio.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="familiar" aria-labelledby="fam-h">
+    <div class="wrap familiar-grid">
+      <div class="familiar-head">
+        <span class="eyebrow">Sound familiar?</span>
+        <h2 id="fam-h">You can feel the studio from here. You just can't see the <em>way in.</em></h2>
+      </div>
+      <div>
+        <ul class="familiar-list">
+          <li>You want to work on films, shows or games, but you don't know where to start, which software matters, or what a "pipeline" even is.</li>
+          <li>You've sent the applications. You've polished the reel. And you've heard nothing back.</li>
+          <li>You know the basics, but every job posting asks for USD, Houdini or Katana, and tutorials only show you buttons.</li>
+          <li>You're the one who fixes things for everyone, and you want to build the tools, and the AI workflows, instead of patching around them.</li>
+        </ul>
+        <p class="familiar-close">Every one of these can be learned. Let's start where you are.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="courses" aria-labelledby="courses-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Four courses · each one stands on its own</span>
+        <h2 id="courses-h">Where are you <em>right now?</em></h2>
+        <p class="lede">Pick the course written for the place you're standing. Each one is sold separately, so you only take what you need.</p>
+      </div>
+      <div class="courses">
+
+        <article class="course">
+          <div class="course-top"><span class="course-num">COURSE 01</span><span class="tag tag-hot">Waitlist open</span></div>
+          <p class="for">For you if you keep hearing silence.</p>
+          <h3>The Breakthrough<small>Studio Foundations</small></h3>
+          <p>How studios really hire, and how to do well once you're in. The industry map, the reel, the application, the interview, and how to behave in your first weeks.</p>
+          <dl class="shift"><dt>From</dt><dd>Talented and invisible</dd><dt>To</dt><dd>The candidate a supervisor is still talking about after the call ends</dd></dl>
+          <ul><li>The industry map</li><li>How studios hire</li><li>The reel</li><li>The application package</li><li>The interview</li><li>Studio communication</li></ul>
+          <a class="link-arrow" href="#waitlist">Join the waitlist →</a>
         </article>
 
-        <div class="ornament"></div>
+        <article class="course">
+          <div class="course-top"><span class="course-num">COURSE 02</span><span class="tag tag-hot">Waitlist open</span></div>
+          <p class="for">For you if you're starting out.</p>
+          <h3>The Inside<small>Pipeline Studio Core</small></h3>
+          <p>No experience needed. Follow one character through every department of a studio and build it yourself in the software, from concept art to final comp. Finish with a capstone and a certificate.</p>
+          <dl class="shift"><dt>From</dt><dd>Outside, with no experience</dd><dt>To</dt><dd>Arriving prepared: you know the map, the first steps in the software, and how a studio works</dd></dl>
+          <ul><li>11 department courses</li><li>One character, start to finish</li><li>Certificate</li></ul>
+          <a class="link-arrow" href="#inside">See inside The Inside →</a>
+        </article>
 
-        <!-- Category Grid -->
-        <div class="category-grid fade-in-scroll">
-            <div class="category-section">
-                <h3>Explore the blurb of her latest story should curiosity lead you</h3>
-                <div class="category-buttons">
-                    <button class="category-btn">Retro CG</button>
-                    <button class="category-btn">Tutorials</button>
-                    <button class="category-btn">Artist Story</button>
-                    <button class="category-btn">Studio</button>
-                    <button class="category-btn">Podcast</button>
-                    <button class="category-btn">Events</button>
-                    <button class="category-btn">Tech</button>
-                    <button class="category-btn">Arts</button>
-                </div>
-            </div>
-            <div class="category-images">
-                <div class="category-img-wrapper">
-                    <span class="category-label">vfx</span>
-                </div>
-                <div class="category-img-wrapper">
-                    <span class="category-label">cg</span>
-                </div>
-                <div class="category-img-wrapper">
-                    <span class="category-label">game</span>
-                </div>
-            </div>
+        <article class="course">
+          <div class="course-top"><span class="course-num">COURSE 03</span><span class="tag">In development</span></div>
+          <p class="for">For you if you know the basics and want to go technical.</p>
+          <h3>Name coming soon<small>Production Workflows</small></h3>
+          <p>Procedural and node-based workflows, the way big studios run them. Read someone else's scene, work with templates, and debug a broken shot.</p>
+          <dl class="shift"><dt>From</dt><dd>Software user</dd><dt>To</dt><dd>Technical, procedural, and more employable</dd></dl>
+          <ul><li>USD &amp; Solaris</li><li>Mari &amp; Katana look dev</li><li>Lighting in Katana</li><li>Nuke workflows</li><li>Debugging production</li></ul>
+          <a class="link-arrow" href="#waitlist">Get notified →</a>
+        </article>
+
+        <article class="course">
+          <div class="course-top"><span class="course-num">COURSE 04</span><span class="tag">In development</span></div>
+          <p class="for">For you if you want to build the pipeline.</p>
+          <h3>Name coming soon<small>Pipeline, TD &amp; AI Workflows</small></h3>
+          <p>Every department again, this time from the pipeline TD's chair. Build the custom tools that connect Maya, Substance 3D Painter, Mari, Katana and Nuke, and learn where AI fits into a studio pipeline.</p>
+          <dl class="shift"><dt>From</dt><dd>Someone who uses the pipeline</dd><dt>To</dt><dd>Someone who builds it</dd></dl>
+          <ul><li>Flow Production Tracking Toolkit</li><li>Custom DCC tools</li><li>USD handoffs</li><li>AI pipeline workflows</li><li>Python &amp; Git</li></ul>
+          <a class="link-arrow" href="#waitlist">Get notified →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="inside" class="inside" aria-labelledby="inside-h">
+    <div class="wrap">
+      <div class="inside-grid">
+        <div class="inside-copy">
+          <span class="eyebrow">Inside Course 02 · The Inside</span>
+          <h2 id="inside-h">One elf. Every department. <em>Built by you.</em></h2>
+          <p class="lede">You'll follow a single character, the elf from a young-children's show, through the whole studio. Each department opens with what it receives, what it hands on and what breaks at the handoff. Then you build it.</p>
+          <p class="lede">If you feel lost right now, that's fine. By the last department you won't be.</p>
         </div>
-    </section>
+        <figure class="graph" aria-label="The elf asset moving through the studio pipeline, from concept to final comp">
+          <div class="graph-bar"><span><i></i><i></i><i></i></span><span>elf_asset_v001</span></div>
+          <svg viewBox="0 0 420 430" role="img" aria-hidden="true">
+            <path class="g-wire" d="M150 52 C 220 52, 200 112, 270 112"/>
+            <path class="g-wire" d="M270 130 C 270 160, 150 150, 150 182"/>
+            <path class="g-wire" d="M150 200 C 220 200, 200 250, 270 250"/>
+            <path class="g-wire" d="M270 268 C 270 300, 150 290, 150 322"/>
+            <path class="g-wire" d="M150 340 C 220 340, 200 392, 270 392"/>
+            <rect class="g-node" x="30" y="34" width="120" height="36" rx="3"/><circle class="g-port" cx="150" cy="52" r="4"/>
+            <text class="g-dept" x="42" y="27">CONCEPT ART</text><text class="g-label" x="42" y="57">elf_modelsheet</text>
+            <rect class="g-node" x="270" y="94" width="120" height="36" rx="3"/><circle class="g-port" cx="270" cy="112" r="4"/>
+            <text class="g-dept" x="282" y="87">MODELLING · UV</text><text class="g-label" x="282" y="117">elf_model_uv</text>
+            <rect class="g-node" x="30" y="182" width="120" height="36" rx="3"/><circle class="g-port" cx="150" cy="200" r="4"/>
+            <text class="g-dept" x="42" y="175">SURFACING</text><text class="g-label" x="42" y="205">elf_textures</text>
+            <rect class="g-node" x="270" y="232" width="120" height="36" rx="3"/><circle class="g-port" cx="270" cy="250" r="4"/>
+            <text class="g-dept" x="282" y="225">RIGGING · ANIM</text><text class="g-label" x="282" y="255">elf_rig_anim</text>
+            <rect class="g-node" x="30" y="322" width="120" height="36" rx="3"/><circle class="g-port" cx="150" cy="340" r="4"/>
+            <text class="g-dept" x="42" y="315">LIGHTING · RENDER</text><text class="g-label" x="42" y="345">elf_light_aovs</text>
+            <rect class="g-node g-node-hot" x="270" y="374" width="120" height="36" rx="3"/><circle class="g-port-hot" cx="270" cy="392" r="4"/>
+            <text class="g-dept g-dept-hot" x="282" y="367">COMP · DELIVERY</text><text class="g-label g-label-hot" x="282" y="397">elf_final</text>
+          </svg>
+          <figcaption class="graph-foot">The same handoffs a real studio uses, from the first sketch to the final Version.</figcaption>
+        </figure>
+      </div>
+      <ol class="chain-list" aria-label="The eleven courses of The Inside, in production order">
+        <li><code>C01</code><span>What is a pipeline</span></li>
+        <li><code>C02</code><span>Concept art</span></li>
+        <li><code>C03</code><span>Modelling</span></li>
+        <li><code>C04</code><span>Modelling polish &amp; export</span></li>
+        <li><code>C05</code><span>UV mapping</span></li>
+        <li><code>C06</code><span>Surfacing</span></li>
+        <li><code>C07</code><span>Rigging</span></li>
+        <li><code>C08</code><span>Layout &amp; animation</span></li>
+        <li><code>C09</code><span>Lighting &amp; rendering</span></li>
+        <li><code>C10</code><span>Compositing &amp; delivery</span></li>
+        <li class="final"><code>C11</code><span>The Chain: following one asset</span></li>
+      </ol>
+      <p class="chain-tools">Built in <b>PureRef</b>, <b>Photoshop</b>, <b>Maya</b>, <b>Substance 3D Painter</b> and <b>Arnold</b>, with an introduction to <b>Houdini</b> groom, and tracked the studio way in <b>Flow Production Tracking</b>.</p>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section class="content-section section-darker" id="about">
-        <div class="about-section fade-in-scroll">
-            <div class="about-content">
-                <h2>Where Demoiselle Pixel gets her ideas</h2>
-                <p>Demoiselle Pixel curates a modern salon for the realms of art and technology, offering secretful insights into the makers and methods behind CG. Her approach is poised, intelligent, and richly artistic, inviting audiences into a world lit by curiosity and craftsmanship.</p>
-                <p>Bilingual Creative Specialist and Professor, Demoiselle Pixel provides refined training and demos on tools like Katana, Mari, and Nuke, and teaches LookDev, Lighting, Rendering and Compositing at University. With experience across global studios and acclaimed productions, she brings clarity, warmth, and feminine sophistication to the craft of making movies, series, games, and animation.</p>
-                <a href="#" class="read-more-btn">Read More</a>
-            </div>
-            <div class="about-sidebar">
-                <div class="about-image"></div>
-            </div>
+  <section aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How every lesson works</span>
+        <h2 id="how-h">Not which button to press. <em>Why studios press it.</em></h2>
+      </div>
+      <div class="steps">
+        <div class="step"><b>01</b><h3>The production problem</h3><p>A real situation from a real show, and why the problem exists in the first place.</p></div>
+        <div class="step"><b>02</b><h3>The studio's decision</h3><p>Why studios solve it the way they do, so the workflow finally makes sense.</p></div>
+        <div class="step"><b>03</b><h3>Build it yourself</h3><p>The software, step by step, then an exercise that leaves you with something real.</p></div>
+        <div class="step story"><b>+</b><h3>Inside production</h3><p>A story from me in every lesson: what went right, what went wrong, and what no manual tells you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sophie" class="sophie" aria-labelledby="sophie-h">
+    <div class="wrap sophie-grid">
+      <div class="sophie-photo">
+        <img class="photo" src="img/sophie-desk.jpg" width="1024" height="1536" alt="Sophie at her desk with a laptop and a podcast microphone" loading="lazy">
+      </div>
+      <div class="sophie-copy">
+        <span class="eyebrow">Meet Sophie</span>
+        <h2 id="sophie-h">Hey, it's Sophie. <em>Let me save you a few years.</em></h2>
+        <p class="strong">I spent eight years lighting and compositing shows at Atomic Cartoons, WildBrain, Mainframe and ICON Creative Studio. I learned most of it the hard way: on deadline, by breaking things, and by asking the questions everyone else was too nervous to ask.</p>
+        <p>Then I moved to Foundry and spent three years helping more than 40 studios on two continents use their tools. I got to see how the same problems show up everywhere, and how differently each studio solves them. That's the part you can't get from a tutorial, and it's what I put in every lesson.</p>
+        <p>Since 2023 I've taught 3D animation and pipeline at Emily Carr University. Every term I watch talented people hit the same wall I hit. You don't need to be special to get through it. You need someone to show you the map.</p>
+        <p class="sign">Everyone can do this. Including you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="waitlist" class="free" aria-labelledby="free-h">
+    <div class="wrap">
+      <div class="free-copy">
+        <span class="eyebrow">The waitlist</span>
+        <h2 id="free-h">Be first in when <em>doors open.</em></h2>
+        <p class="lede">Tell me which course you're waiting for. You'll hear first when it opens, with early-bird pricing.</p>
+      </div>
+      <form class="join" id="join-form" novalidate>
+        <div class="row2">
+          <div class="field"><label for="f-name">First name</label><input id="f-name" name="name" autocomplete="given-name" placeholder="Your first name"></div>
+          <div class="field">
+            <label for="f-course">I'm most interested in</label>
+            <select id="f-course" name="course">
+              <option>The Breakthrough</option>
+              <option>The Inside</option>
+              <option>Course 03 · Production Workflows</option>
+              <option>Course 04 · Pipeline, TD &amp; AI Workflows</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
         </div>
-    </section>
+        <button class="btn btn-primary" type="submit">Join the waitlist</button>
+        <p class="form-msg" id="form-msg" role="status"></p>
+        <p class="privacy">This opens an email to <b>info@demoisellepixel.com</b>. No spam, ever.</p>
+      </form>
+    </div>
+  </section>
 
-    <!-- Reviews Section -->
-    <section class="reviews-section">
-        <div class="reviews-container">
-            <h2 class="reviews-title">Reader Reviews for the Red Series</h2>
-            <div class="reviews-grid fade-in-scroll">
-                <div class="review-card">
-                    <p class="review-text">"Share a review of your latest work or your most famous one. Short press releases will also work. So will a testimonial from your fans."</p>
-                    <p class="review-author">- J. Burrows, Bookworm with Me</p>
-                </div>
-                <div class="review-card">
-                    <p class="review-text">"Share a review of your latest work or your most famous one. Short press releases will also work. So will a testimonial from your fans. Share a review of your latest work or your most famous one. Short press releases will also work."</p>
-                    <p class="review-author">- Lorna Olivares, Book vlogger</p>
-                </div>
-                <div class="review-card">
-                    <p class="review-text">"Share a review of your latest work or your most famous one. So will a testimonial from your most ardent readers and fans."</p>
-                    <p class="review-author">- Minnie Degassi, Venston Post</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="faq" aria-labelledby="faq-h">
+    <div class="wrap faq-grid">
+      <div class="faq-head">
+        <span class="eyebrow">Questions</span>
+        <h2 id="faq-h">Before you <em>choose.</em></h2>
+      </div>
+      <div>
+        <details>
+          <summary>I'm a complete beginner. Is there a course for me?</summary>
+          <p>Yes. The Inside is written for you: someone getting ready for art school, or teaching themselves on a budget. You don't need any studio experience. If you feel lost right now, you won't by the end.</p>
+        </details>
+        <details>
+          <summary>Which course should I start with?</summary>
+          <p>Start with the one that matches where you are today. Starting out: The Inside. Applying and hearing nothing: The Breakthrough. Comfortable with the basics and ready for procedural work: Course 03. Want to build the tools and bring AI into the pipeline: Course 04. Not sure? Pick "Not sure yet" on the waitlist and I'll point you to the right one.</p>
+        </details>
+        <details>
+          <summary>Do I need to take them in order?</summary>
+          <p>No. Each course stands on its own and never assumes you've seen another one.</p>
+        </details>
+        <details>
+          <summary>What software do I need?</summary>
+          <p>The Breakthrough needs none. The Inside uses Maya, Substance 3D Painter and Arnold, plus PureRef and Photoshop for concept art. Student and learning versions work for the exercises.</p>
+        </details>
+        <details>
+          <summary>Do I get a certificate?</summary>
+          <p>The Inside ends with a capstone project: the full elf, through every department. Finishing it earns your certificate of completion.</p>
+        </details>
+        <details>
+          <summary>How much does it cost?</summary>
+          <p>Each course is priced on its own. Prices go to the waitlist first, along with early-bird pricing.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section class="content-section section-darker" id="contact">
-        <div class="contact-section fade-in-scroll">
-            <div class="contact-content">
-                <h2>Reach Demoiselle Pixel here:</h2>
-                <div class="contact-item">
-                    <p class="contact-label">Collab</p>
-                    <a href="mailto:collab@demoisellepixel.com" class="contact-link">collab@demoisellepixel.com</a>
-                </div>
-                <div class="contact-item">
-                    <p class="contact-label">Info</p>
-                    <a href="mailto:info@demoisellepixel.com" class="contact-link">info@demoisellepixel.com</a>
-                </div>
-            </div>
-            <div class="contact-image"></div>
-        </div>
-    </section>
+  <section class="door" aria-labelledby="door-h" style="padding-top:0">
+    <div class="wrap door-grid">
+      <div class="door-copy">
+        <h2 id="door-h">Still not sure which one is yours? <em>Ask me.</em></h2>
+        <p class="lede">Everything here can be figured out. Write to me at <b>info@demoisellepixel.com</b> and tell me where you're stuck.</p>
+        <a class="btn btn-primary" href="mailto:info@demoisellepixel.com?subject=Which%20course%20is%20for%20me%3F">Write to me</a>
+      </div>
+      <div class="door-photo">
+        <img class="photo" src="img/sophie-couch.jpg" width="1024" height="1536" alt="Sophie smiling on a leather sofa" loading="lazy">
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="#" class="social-link" aria-label="Instagram">IG</a>
-            <a href="#" class="social-link" aria-label="Twitter">TW</a>
-            <a href="#" class="social-link" aria-label="Facebook">FB</a>
-            <a href="#" class="social-link" aria-label="LinkedIn">IN</a>
-        </div>
-        <p class="footer-text">Demoiselle Pixel © 2024</p>
-    </footer>
+</main>
 
-    <script>
-        // Smooth scroll functionality
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+<footer>
+  <div class="wrap">
+    <p class="motto">The course that didn't exist when I needed it.</p>
+    <div class="foot-cols">
+      <div>
+        <a class="logo" href="#top" aria-label="Back to top">
+          <span class="cameo" aria-hidden="true"></span>
+          <span class="wm"><b>Demoiselle Pixel</b><span>ACADEMY</span></span>
+        </a>
+      </div>
+      <div>
+        <h4>Courses</h4>
+        <ul><li><a href="#courses">The Breakthrough</a></li><li><a href="#inside">The Inside</a></li><li><a href="#courses">Course 03</a></li><li><a href="#courses">Course 04</a></li></ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="#sophie">Meet Sophie</a></li><li><a href="#waitlist">Waitlist</a></li><li><a href="#faq">FAQ</a></li><li><a href="mailto:info@demoisellepixel.com">info@demoisellepixel.com</a></li></ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul><li>Instagram</li><li>TikTok</li><li>YouTube</li><li>LinkedIn</li></ul>
+      </div>
+    </div>
+    <div class="legal"><span>© 2026 Demoiselle Pixel Academy</span><span>demoisellepixel.com</span></div>
+  </div>
+</footer>
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Add parallax effect to hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero-content');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
-            }
-        });
-    </script>
+<script>
+document.getElementById('join-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var name = document.getElementById('f-name').value.trim();
+  var course = document.getElementById('f-course').value;
+  var body = 'Hi Sophie,\n\nPlease add me to the waitlist for: ' + course + '.\n\n' + (name ? 'Thanks,\n' + name : 'Thanks!');
+  window.location.href = 'mailto:info@demoisellepixel.com?subject=' + encodeURIComponent('Waitlist: ' + course) + '&body=' + encodeURIComponent(body);
+  document.getElementById('form-msg').textContent = 'Your email app should open with the message ready. If it doesn\'t, write to info@demoisellepixel.com.';
+});
+</script>
 </body>
 </html>
