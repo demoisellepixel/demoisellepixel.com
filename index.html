@@ -11,22 +11,23 @@
 <meta property="og:url" content="https://demoisellepixel.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2D3526">
+<meta name="theme-color" content="#4D3328">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;600;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Mrs+Saint+Delafield&display=swap">
 <style>
-/* Layout: founder-led sales page. Cream / navy / caramel bands, Futur-style heavy uppercase headlines, yellow calls to action. */
+/* Layout: founder-led sales page. Cream and root-brown bands, olive-green headlines, amber calls to action, Futur-style heavy uppercase type. */
 :root {
   /* Palette: Amber #C8872B, Golden Sand #E0B96E, Root Brown #4D3328, Cream White #F8EBD5, Olive Black #2D3526 */
   --cream: #F8EBD5;
   --cream-2: #F1DFC0;
   --white: #FFFAF1;
-  --navy: #2D3526;          /* olive black: dark bands */
-  --navy-2: #3A4331;
-  --root: #4D3328;          /* root brown: headlines, course section */
+  --navy: #4D3328;          /* root brown: main dark background bands */
+  --navy-2: #5C4033;
+  --root: #2D3526;          /* olive black (green): headlines and accent text */
+  --brown-deep: #3B271F;    /* deeper root brown: course section */
   --caramel: #C8872B;       /* amber: highlights */
   --caramel-dk: #8A5718;    /* deeper amber for small text on cream */
   --tan: #E0B96E;           /* golden sand */
@@ -141,7 +142,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .ticks li { position: relative; padding-left: 34px; }
 .ticks li::before { content: ""; position: absolute; left: 4px; top: 0.62em; width: 9px; height: 9px; background: var(--tan); transform: rotate(45deg); }
-.phone { position: sticky; top: 110px; margin: 0 auto; width: min(340px, 100%); aspect-ratio: 9 / 18.5; border: 10px solid #2b2b31; border-radius: 46px; overflow: hidden; box-shadow: 0 40px 70px -30px rgba(45, 53, 38, .55), inset 0 0 0 2px #55555d; background: #000; }
+.phone { position: sticky; top: 110px; margin: 0 auto; width: min(340px, 100%); aspect-ratio: 9 / 18.5; border: 10px solid #2b2b31; border-radius: 46px; overflow: hidden; box-shadow: 0 40px 70px -30px rgba(77, 51, 40, .55), inset 0 0 0 2px #55555d; background: #000; }
 .phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
 @media (max-width: 960px) { .phone { position: relative; top: 0; width: min(300px, 80%); } }
 
@@ -154,7 +155,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .meanwhile span { display: block; color: var(--caramel-dk); }
 
 /* Courses (Futur-style product grid) */
-.shop { background: var(--root); color: var(--cream); }
+.shop { background: var(--brown-deep); color: var(--cream); }
 .shop .eyebrow-line { color: var(--caramel); margin-bottom: 18px; display: block; }
 .shop h2 { font-size: clamp(2.8rem, 8vw, 6.6rem); }
 .shop-sub { display: flex; justify-content: space-between; gap: 16px; padding-block: 16px 22px; border-bottom: 2px solid var(--cream); margin-bottom: 36px; color: #cfcfcf; }
@@ -245,7 +246,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .hi { padding: 0; background: var(--white); }
 .hi-photo { position: relative; height: clamp(380px, 52vw, 640px); overflow: hidden; }
 .hi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% 40%; }
-.hi-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(45,53,38,.55), rgba(45,53,38,.05) 70%); }
+.hi-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(77,51,40,.55), rgba(77,51,40,.05) 70%); }
 .hi-title { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; padding-inline: clamp(20px, 8vw, 140px); color: #fff; }
 .hi-title h2 { font: 800 clamp(3rem, 8vw, 6.4rem)/1 var(--display); letter-spacing: -0.02em; text-shadow: 0 2px 30px rgba(0,0,0,.25); }
 .hi-title h2 span { font-family: var(--script); font-weight: 400; font-size: 1.35em; letter-spacing: 0; margin-left: .1em; }
