@@ -1,178 +1,717 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demoiselle Pixel - Where Art Meets Technology</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demoiselle Pixel Academy · Studio-Ready courses for VFX, animation &amp; games</title>
+<meta name="description" content="Studio-Ready: four online courses that take you from outside the studio to inside it. Get hired, get inside, go technical, or build the pipeline. Taught by Sophie Désaulniers.">
+<meta property="og:title" content="Demoiselle Pixel Academy">
+<meta property="og:description" content="The course that didn't exist when I needed it. Four Studio-Ready courses for VFX, animation and games artists.">
+<meta property="og:image" content="https://demoisellepixel.com/img/sophie-social.jpg">
+<meta property="og:url" content="https://demoisellepixel.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#33241E">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;600;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Mrs+Saint+Delafield&display=swap">
+<style>
+/* Layout: founder-led sales page. Plaster and walnut bands, brass calls to action, Futur-style heavy uppercase type. */
+:root {
+  /* Palette: Dark Walnut #33241E, Roasted Brown #7B5645, Studio Beige #C7B09A, Plaster White #F0E8DD, Muted Brass #A6854D */
+  --cream: #F0E8DD;         /* plaster white: page */
+  --cream-2: #E4D7C7;
+  --white: #FAF6F0;         /* cards */
+  --navy: #33241E;          /* dark walnut: main dark background bands */
+  --navy-2: #45322A;
+  --root: #33241E;          /* dark walnut: headlines on plaster */
+  --brown-deep: #7B5645;    /* roasted brown: course section */
+  --caramel: #A6854D;       /* muted brass: highlights */
+  --caramel-dk: #7A5F2E;    /* deeper brass for small text on plaster */
+  --tan: #C7B09A;           /* studio beige */
+  --yellow: #A6854D;        /* buttons use muted brass */
+  --ink: #33241E;
+  --muted: #6E5A4E;
+  --line: #DDCFBE;
+  --on-navy: #F0E8DD;
+  --on-navy-muted: #C7B09A;
+  --display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --script: "Mrs Saint Delafield", "Brush Script MT", cursive;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+@media (min-width: 720px) { .wrap { padding-inline: 40px; } }
+.narrow { max-width: 1000px; }
+
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+.headline { font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.95; }
+.hl { color: var(--caramel); }
+.hl-y { color: var(--tan); }
+
+.label { font-family: var(--display); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; }
+.mono { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.pill { display: inline-block; border: 1px solid currentColor; padding: 12px 28px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+  font: 600 0.85rem/1 var(--display); letter-spacing: 0.28em; text-transform: uppercase;
+  background: var(--yellow); color: var(--ink); text-decoration: none; border: 0; cursor: pointer;
+  padding: 26px 56px; transition: transform .15s ease, filter .15s ease;
+}
+.btn:hover { transform: translateY(-2px); filter: brightness(1.04); }
+.btn-sm { padding: 18px 30px; }
+
+section { padding-block: clamp(64px, 9vw, 120px); }
+.center { text-align: center; }
+
+/* Cameo logo */
+.cameo { display: inline-block; width: 26px; height: 33px; flex: none; background: currentColor;
+  -webkit-mask: url("img/cameo.png") center / contain no-repeat; mask: url("img/cameo.png") center / contain no-repeat; }
+
+/* Sticky announcement bar */
+.topbar { position: sticky; top: 0; z-index: 30; background: var(--navy); color: var(--on-navy); padding-top: env(safe-area-inset-top, 0px); }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--on-navy); }
+.brand b { font: 800 0.95rem/1 var(--display); letter-spacing: 0.02em; text-transform: uppercase; }
+.brand span { display: block; font: 400 0.62rem/1 var(--display); letter-spacing: 0.42em; color: var(--caramel); margin-top: 5px; }
+.topbar p { font-size: 0.98rem; flex: 1; text-align: right; }
+@media (max-width: 860px) { .topbar p { display: none; } }
+@media (max-width: 420px) { .topbar .btn { padding: 14px 16px; letter-spacing: .16em; } .brand b { font-size: .8rem; } }
+
+/* Hero */
+.hero { padding-block: clamp(24px, 4vw, 48px) clamp(56px, 7vw, 96px); }
+.hero-card { background: var(--white); padding: clamp(32px, 5vw, 64px) clamp(16px, 5vw, 64px) clamp(28px, 4vw, 56px); display: flex; flex-direction: column; align-items: center; gap: clamp(24px, 3vw, 36px); text-align: center; }
+.hero h1 { font-size: clamp(2.6rem, 7.4vw, 6.4rem); max-width: 14ch; color: var(--root); }
+.hero .pill { color: var(--root); }
+.hero-photo { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: 55% 40%; }
+@media (max-width: 640px) { .hero-photo { aspect-ratio: 4 / 3.4; object-position: 66% 40%; } }
+.hero-after { display: flex; flex-direction: column; align-items: center; gap: 26px; margin-top: clamp(36px, 5vw, 56px); text-align: center; }
+.hero-after p { font-size: clamp(1.05rem, 1.6vw, 1.3rem); max-width: 56ch; }
+.hero-after strong { font-family: var(--display); font-weight: 800; font-size: clamp(1.15rem, 1.8vw, 1.45rem); }
+.stars { color: var(--caramel-dk); letter-spacing: 1.4em; font-size: 1.1rem; padding-left: 1.4em; }
+
+/* Navy numbers band */
+.numbers { background: var(--navy); color: var(--on-navy); padding-block: clamp(56px, 7vw, 88px); }
+.wordmark { text-align: center; margin-bottom: clamp(32px, 4vw, 52px); }
+.wordmark small { display: block; font: 400 0.85rem/1 var(--display); letter-spacing: 0.6em; color: var(--on-navy-muted); margin-bottom: 18px; padding-left: .6em; }
+.wordmark b { display: block; font: 300 clamp(1.8rem, 5vw, 3.6rem)/1 var(--display); letter-spacing: 0.24em; color: var(--caramel); text-transform: uppercase; padding-left: .24em; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stat { text-align: center; padding: 8px 16px; display: flex; flex-direction: column; gap: 10px; }
+.stat + .stat { border-left: 1px solid rgba(245, 239, 232, .25); }
+.stat b { font: 900 clamp(3rem, 6vw, 4.6rem)/1 var(--display); letter-spacing: -0.02em; }
+.stat span { font: 600 0.8rem/1.6 var(--display); letter-spacing: 0.26em; text-transform: uppercase; color: var(--on-navy-muted); }
+@media (max-width: 640px) { .stats { grid-template-columns: 1fr; gap: 28px; } .stat + .stat { border-left: 0; border-top: 1px solid rgba(245, 239, 232, .25); padding-top: 28px; } }
+
+/* Caramel pillars band */
+.pillars { background: var(--tan); color: var(--root); }
+.pillars h2 { font-size: clamp(2.2rem, 5vw, 4rem); text-align: center; margin-bottom: clamp(36px, 5vw, 64px); }
+.pillar-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.pillar { text-align: center; padding: 8px 18px 4px; text-decoration: none; display: flex; flex-direction: column; gap: 14px; }
+.pillar + .pillar { border-left: 1px solid rgba(77, 51, 40, .3); }
+.pillar b { font: 300 clamp(2rem, 3.6vw, 3.3rem)/1 var(--display); letter-spacing: -0.01em; }
+.pillar span { font: 600 0.74rem/1.5 var(--display); letter-spacing: 0.24em; text-transform: uppercase; color: var(--root); }
+.pillar:hover b { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+@media (max-width: 860px) { .pillar-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; } .pillar:nth-child(3) { border-left: 0; } }
+@media (max-width: 480px) { .pillar-row { grid-template-columns: 1fr; } .pillar + .pillar { border-left: 0; border-top: 1px solid rgba(77,51,40,.3); padding-top: 28px; } }
+
+/* Holding you back */
+.back-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(32px, 5vw, 80px); align-items: start; }
+@media (max-width: 960px) { .back-grid { grid-template-columns: 1fr; } }
+.rule { width: 84px; height: 1px; background: var(--caramel); margin-bottom: 28px; }
+.back h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); color: var(--root); margin-bottom: 36px; }
+.cards { display: flex; flex-direction: column; gap: 22px; }
+.card { background: var(--white); border: 1px solid var(--line); padding: clamp(24px, 3.4vw, 40px); }
+.card-head { display: flex; align-items: center; gap: 22px; margin-bottom: 14px; }
+.diamond { width: 54px; height: 54px; flex: none; display: grid; place-items: center; position: relative; color: var(--caramel-dk); }
+.diamond::before { content: ""; position: absolute; inset: 8px; border: 1.5px solid var(--tan); transform: rotate(45deg); }
+.diamond svg { width: 22px; height: 22px; position: relative; }
+.card h3 { font: 800 clamp(1.25rem, 2vw, 1.5rem)/1.2 var(--display); }
+.ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ticks li { position: relative; padding-left: 34px; }
+.ticks li::before { content: ""; position: absolute; left: 4px; top: 0.62em; width: 9px; height: 9px; background: var(--tan); transform: rotate(45deg); }
+/* Light silver phone frame, sitting beside the heading like the reference (not sticky) */
+.phone { position: relative; margin: 8px auto 0; width: min(330px, 100%); aspect-ratio: 9 / 18.5; padding: 9px; border-radius: 50px;
+  background: linear-gradient(145deg, #F7F3EE 0%, #D9D2C8 45%, #EFEAE3 70%, #C9C1B6 100%);
+  box-shadow: 0 0 0 1px #BDB4A8, 0 50px 80px -40px rgba(51, 36, 30, .55), 0 18px 40px -20px rgba(51, 36, 30, .25); }
+.phone::before, .phone::after { content: ""; position: absolute; width: 4px; border-radius: 2px; background: #C9C1B6; }
+.phone::before { left: -4px; top: 20%; height: 8%; box-shadow: 0 90px 0 #C9C1B6; }
+.phone::after { right: -4px; top: 26%; height: 13%; }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 41px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
+@media (max-width: 960px) { .phone { width: min(300px, 80%); } }
+
+.truth { background: var(--navy); color: var(--on-navy); text-align: center; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 80px); margin-top: clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 22px; align-items: center; }
+.truth .spark { color: var(--caramel); font-size: 2rem; line-height: 1; }
+.back .truth h2 { font: 800 clamp(1.7rem, 3.4vw, 2.7rem)/1.15 var(--display); max-width: 26ch; color: var(--on-navy); margin: 0; }
+.truth p { color: var(--on-navy-muted); max-width: 62ch; font-size: 1.08rem; }
+.truth p b { color: var(--on-navy); }
+.meanwhile { text-align: center; padding-top: clamp(48px, 6vw, 80px); font: 800 clamp(1.5rem, 3vw, 2.3rem)/1.2 var(--display); color: var(--root); }
+.meanwhile span { display: block; color: var(--caramel-dk); }
+
+/* Courses (Futur-style product grid) */
+.shop { background: var(--brown-deep); color: var(--cream); }
+.shop .eyebrow-line { color: var(--caramel); margin-bottom: 18px; display: block; }
+.shop h2 { font-size: clamp(2.8rem, 8vw, 6.6rem); }
+.shop-sub { display: flex; justify-content: space-between; gap: 16px; padding-block: 16px 22px; border-bottom: 2px solid var(--cream); margin-bottom: 36px; color: #cfcfcf; }
+.products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+@media (max-width: 1080px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .products { grid-template-columns: 1fr; } }
+.product { display: flex; flex-direction: column; background: #33241E; min-width: 0; }
+.cover-wrap { background: var(--cream-2); padding: 28px 18% 30px; }
+.cover { aspect-ratio: 3 / 4; background: #fff; box-shadow: -10px 16px 30px -10px rgba(0,0,0,.45); padding: 9% 9% 7%; display: flex; flex-direction: column; color: var(--ink); }
+.cover .c-top { font: 500 0.42rem/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; border-bottom: 1px solid var(--ink); padding-bottom: 6%; margin-bottom: 8%; }
+.cover .c-title { font: 900 clamp(1.3rem, 2.2vw, 1.75rem)/0.9 var(--display); text-transform: uppercase; letter-spacing: -0.02em; }
+.cover .c-sub { font: 500 0.45rem/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; margin-top: 6%; color: var(--muted); }
+.cover .c-art { flex: 1; margin-top: 8%; min-height: 0; background: var(--navy); position: relative; overflow: hidden; }
+.cover .c-art img { width: 100%; height: 100%; object-fit: cover; }
+.cover .c-art.tan { background: var(--tan); }
+.cover .c-art.caramel { background: var(--caramel); }
+.cover .c-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cover .c-foot { font: 500 0.4rem/1 var(--mono); letter-spacing: .3em; text-transform: uppercase; text-align: center; margin-top: 7%; color: var(--muted); }
+.p-body { padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.p-body h3 { font: 800 clamp(1.5rem, 2.2vw, 1.85rem)/1.08 var(--display); letter-spacing: -0.01em; }
+.p-body .mono { color: #a9a9a9; }
+.p-body p { color: #c9c9c9; font-size: 0.95rem; line-height: 1.6; }
+.p-foot { margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(248,235,213,.18); display: flex; flex-direction: column; gap: 14px; }
+.status { font: 800 1.35rem/1 var(--display); }
+.status small { font: 500 0.72rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #9a9a9a; margin-left: 8px; }
+.p-links { display: flex; gap: 22px; font-size: 0.95rem; }
+.p-links a { text-decoration: none; color: #d6d6d6; }
+.p-links a.go { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; }
+.p-links a:hover { color: var(--yellow); }
+
+/* Just imagine */
+.imagine { position: relative; padding: 0; background: var(--navy); }
+.imagine-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); min-height: 100%; }
+@media (max-width: 900px) { .imagine-grid { grid-template-columns: 1fr; } }
+.imagine-photo { position: relative; min-height: 380px; }
+.imagine-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.imagine-panel { color: var(--on-navy); padding: clamp(48px, 7vw, 96px) clamp(16px, 5vw, 72px); display: flex; flex-direction: column; gap: 30px; }
+.imagine-panel h2 { font: 300 clamp(2.6rem, 5vw, 4.2rem)/1 var(--display); color: var(--tan); text-align: center; }
+.chev { list-style: none; margin: 0; padding: 0; }
+.chev li { position: relative; padding: 22px 0 22px 42px; border-bottom: 1px solid rgba(245, 239, 232, .2); color: var(--on-navy-muted); }
+.chev li::before { content: "›"; position: absolute; left: 8px; top: 16px; font-size: 1.6rem; color: var(--tan); }
+.chev li b { color: var(--on-navy); }
+.promise { background: var(--white); color: var(--ink); padding: clamp(28px, 4vw, 48px); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.promise h3 { font: 800 clamp(1.6rem, 3vw, 2.4rem)/1.1 var(--display); color: var(--root); }
+.promise .rule { margin: 6px auto; }
+.promise .label { color: var(--caramel-dk); }
+.promise .big { font: 900 clamp(2rem, 4.4vw, 3.4rem)/1 var(--display); text-transform: uppercase; letter-spacing: -0.02em; color: var(--root); }
+
+/* The Inside */
+.inside { background: var(--white); }
+.inside-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; margin-bottom: 56px; }
+@media (max-width: 900px) { .inside-grid { grid-template-columns: 1fr; } }
+.inside-copy { display: flex; flex-direction: column; gap: 22px; }
+.inside-copy h2 { font-size: clamp(2.3rem, 4.8vw, 4rem); color: var(--root); }
+.inside-copy p { color: var(--muted); max-width: 54ch; }
+.graph { margin: 0; background: var(--cream); border: 1px solid var(--line); min-width: 0; }
+.graph-bar { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--line); font: 500 0.72rem/1 var(--mono); color: var(--muted); }
+.graph-bar i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--line); margin-right: 5px; }
+.graph svg { display: block; width: 100%; height: auto; }
+.g-wire { stroke: var(--tan); stroke-width: 1.8; fill: none; }
+.g-node { fill: var(--white); stroke: var(--line); stroke-width: 1.2; }
+.g-node-hot { fill: var(--navy); stroke: var(--navy); }
+.g-port { fill: var(--tan); } .g-port-hot { fill: var(--yellow); }
+.g-label { font-family: var(--mono); font-size: 11px; fill: var(--ink); } .g-label-hot { fill: #fff; }
+.g-dept { font-family: var(--mono); font-size: 8.5px; fill: var(--muted); letter-spacing: .08em; } .g-dept-hot { fill: var(--caramel-dk); }
+.graph-foot { padding: 12px 14px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
+.chain { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.chain li { border: 1px solid var(--line); background: var(--cream); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
+.chain code { font: 500 0.72rem/1 var(--mono); color: var(--caramel-dk); letter-spacing: .08em; }
+.chain span { font: 700 1rem/1.3 var(--display); }
+.chain li.final { background: var(--navy); border-color: var(--navy); color: #fff; }
+.chain li.final code { color: var(--yellow); }
+.tools { margin-top: 26px; color: var(--muted); font-size: 0.98rem; }
+.tools b { color: var(--ink); }
+
+/* How lessons work */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 48px; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+.step { border-top: 3px solid var(--navy); padding-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.step b { font: 900 2.4rem/1 var(--display); color: var(--tan); }
+.step h3 { font: 800 1.3rem/1.2 var(--display); }
+.step p { color: var(--muted); font-size: 0.98rem; }
+.step.story { border-top-color: var(--yellow); }
+.how h2 { font-size: clamp(2.2rem, 4.8vw, 4rem); color: var(--root); max-width: 18ch; }
+
+/* Hi, I'm Sophie */
+.hi { padding: 0; background: var(--white); }
+.hi-photo { position: relative; height: clamp(380px, 52vw, 640px); overflow: hidden; }
+.hi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% 40%; }
+.hi-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(51,36,30,.55), rgba(51,36,30,.05) 70%); }
+.hi-title { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; padding-inline: clamp(20px, 8vw, 140px); color: #fff; }
+.hi-title h2 { font: 800 clamp(3rem, 8vw, 6.4rem)/1 var(--display); letter-spacing: -0.02em; text-shadow: 0 2px 30px rgba(0,0,0,.25); }
+.hi-title h2 span { font-family: var(--script); font-weight: 400; font-size: 1.35em; letter-spacing: 0; margin-left: .1em; }
+.founder { position: relative; z-index: 2; margin: clamp(-140px, -10vw, -60px) auto 0; max-width: 1000px; background: var(--cream); padding: clamp(36px, 5vw, 72px) clamp(20px, 6vw, 80px); display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.founder .pill { color: var(--root); font: 800 0.8rem/1 var(--display); letter-spacing: .3em; padding: 16px 32px; }
+.founder .wordmark { margin: 0; } .founder .wordmark small { color: var(--muted); } .founder .wordmark b { color: var(--caramel-dk); }
+.founder .story { display: flex; flex-direction: column; gap: 18px; font-size: 1.05rem; }
+.quote { background: var(--navy); color: #fff; text-align: center; padding: clamp(24px, 3.4vw, 40px); font: 800 clamp(1.3rem, 2.6vw, 2rem)/1.25 var(--display); width: 100%; }
+.sign { font-family: var(--script); font-size: clamp(2.6rem, 5vw, 3.6rem); color: var(--caramel-dk); line-height: 1; }
+
+/* Waitlist */
+.join-sec { background: var(--navy); color: var(--on-navy); }
+.join-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+@media (max-width: 860px) { .join-grid { grid-template-columns: 1fr; } }
+.join-sec h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); margin: 16px 0 20px; }
+.join-sec .label { color: var(--caramel); }
+.join-sec p { color: var(--on-navy-muted); }
+form.join { background: var(--white); color: var(--ink); padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label { font: 500 0.72rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select { font: 500 1rem/1.2 var(--body); color: var(--ink); background: var(--cream); border: 1px solid var(--line); border-radius: 0; padding: 16px 14px; width: 100%; }
+form.join .btn { width: 100%; padding-block: 24px; }
+.form-msg { font-size: 0.9rem; color: var(--caramel-dk); min-height: 1.4em; }
+.privacy { font-size: 0.82rem; color: var(--muted); }
+
+/* FAQ */
+.faq h2 { font-size: clamp(2.4rem, 5vw, 4rem); color: var(--root); margin-bottom: 36px; }
+details { background: var(--white); border: 1px solid var(--line); margin-bottom: 12px; }
+summary { list-style: none; cursor: pointer; padding: 22px 26px; font: 700 1.1rem/1.4 var(--display); display: flex; justify-content: space-between; gap: 20px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--caramel-dk); font-size: 1.4rem; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { padding: 0 26px 24px; color: var(--muted); max-width: 70ch; }
+
+/* Open door */
+.door { padding-top: 0; }
+.door-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(32px, 5vw, 72px); align-items: center; background: var(--white); border: 1px solid var(--line); padding: clamp(24px, 4vw, 56px); max-width: 1120px; }
+@media (max-width: 860px) { .door-grid { grid-template-columns: 1fr; } }
+.door-copy { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+.door-copy h2 { font-size: clamp(2.2rem, 4.6vw, 3.8rem); color: var(--root); }
+.door-copy p { color: var(--muted); max-width: 48ch; }
+.door-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+@media (max-width: 860px) { .door-photo { max-width: 420px; } }
+
+/* Footer */
+footer { background: var(--navy); color: var(--on-navy-muted); }
+footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; gap: 44px; }
+.motto { font: 900 clamp(2rem, 5vw, 3.8rem)/0.95 var(--display); text-transform: uppercase; letter-spacing: -0.02em; color: var(--on-navy); max-width: 16ch; }
+.motto span { color: var(--tan); }
+.foot-cols { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 32px; }
+@media (max-width: 760px) { .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.foot-cols h4 { margin: 0 0 12px; font: 500 0.72rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--caramel); }
+.foot-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem; }
+.foot-cols a { text-decoration: none; }
+.foot-cols a:hover { color: var(--on-navy); }
+.legal { font-size: 0.82rem; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+</style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Demoiselle<br>Pixel</h1>
-            <p class="hero-subtitle">Where Art Meets Technology</p>
-            <nav class="hero-nav">
-                <button class="nav-btn" onclick="scrollToSection('news')">The Latest News</button>
-                <button class="nav-btn" onclick="scrollToSection('courses')">Courses</button>
-            </nav>
-        </div>
-    </section>
 
-    <!-- Featured Article Section -->
-    <section class="content-section section-dark">
-        <article class="featured-article fade-in-scroll">
-            <div class="featured-images">
-                <div class="featured-img"></div>
-                <div class="featured-img"></div>
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Demoiselle Pixel Academy home">
+      <span class="cameo" aria-hidden="true"></span>
+      <span><b>Demoiselle Pixel</b><span>ACADEMY</span></span>
+    </a>
+    <p>Join the waitlist for early-bird pricing on all four courses.</p>
+    <a class="btn btn-sm" href="#waitlist">Join the waitlist</a>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <h1 class="headline">The course that didn't exist when I <span class="hl">needed it.</span></h1>
+        <span class="pill label">Studio-Ready · VFX, animation &amp; games</span>
+        <img class="hero-photo" src="img/sophie-social.jpg" width="1536" height="1024" alt="Sophie Désaulniers in a pink blazer, sitting on a leather sofa" fetchpriority="high">
+      </div>
+      <div class="hero-after">
+        <p>Whether you're just starting out, sending applications into silence, ready to go technical, or curious how the pipeline gets built, there's a way into the studio. I'll show you how studios really work, mistakes included. Mostly mine.</p>
+        <strong>Four courses. Four ways in. Start where you are.</strong>
+        <a class="btn" href="#courses">Find your course</a>
+        <span class="stars" aria-hidden="true">✦✦✦✦✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Numbers band -->
+  <section class="numbers" aria-label="The academy at a glance">
+    <div class="wrap">
+      <div class="wordmark"><small>DEMOISELLE PIXEL</small><b>Academy</b></div>
+      <div class="stats">
+        <div class="stat"><b>4</b><span>Courses,<br>sold separately</span></div>
+        <div class="stat"><b>11</b><span>Studio departments,<br>one by one</span></div>
+        <div class="stat"><b>1</b><span>Character,<br>start to finish</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Four pillars -->
+  <section class="pillars" aria-labelledby="pillars-h">
+    <div class="wrap">
+      <h2 id="pillars-h" class="headline">Four pillars. One way in.</h2>
+      <div class="pillar-row">
+        <a class="pillar" href="#c01"><b>Get hired</b><span>01 · The Breakthrough</span></a>
+        <a class="pillar" href="#c02"><b>Get inside</b><span>02 · The Inside</span></a>
+        <a class="pillar" href="#c03"><b>Go technical</b><span>03 · Production Workflows</span></a>
+        <a class="pillar" href="#c04"><b>Build it</b><span>04 · Pipeline, TD &amp; AI</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's holding you back -->
+  <section class="back" aria-labelledby="back-h">
+    <div class="wrap">
+      <div class="back-grid">
+        <div>
+          <div class="rule"></div>
+          <h2 id="back-h" class="headline">So what's <span class="hl">holding you back?</span></h2>
+          <div class="cards">
+            <div class="card">
+              <div class="card-head"><span class="diamond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21V11M12 11c0-4 3-6 7-6 0 4-3 6-7 6zM12 14c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></svg></span><h3>If you're just starting out,</h3></div>
+              <ul class="ticks">
+                <li>You want to work on films, shows or games, but you don't know where to start.</li>
+                <li>You're not sure which software matters, or what a "pipeline" even is.</li>
+                <li>Every tutorial shows you a button. None of them show you the studio.</li>
+              </ul>
             </div>
-            <div class="featured-text">
-                <h2>Now that Demoiselle Pixel's identity has been unmasked, how will the industry greet her arrival?</h2>
-                <p>Beneath the warm glow of candle light, Demoiselle Pixel welcomes you into a world where creativity and technology meet. Our stories follows artists, events and studios stepping into this luminous space, navigating the tension between timeless craft and modern innovation.</p>
-                <p>As their path unfolds, so does the question at the heart of today's digital artistry: how do we stay true to inspiration while embracing the future? Discover our full stories every week.</p>
+            <div class="card">
+              <div class="card-head"><span class="diamond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></span><h3>Or if you've been applying,</h3></div>
+              <ul class="ticks">
+                <li>You've polished the reel. You've sent the applications.</li>
+                <li>And you've heard nothing back, with no idea why.</li>
+              </ul>
             </div>
+            <div class="card">
+              <div class="card-head"><span class="diamond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="12" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.5 6c5 0 4 6 7 6M8.5 18c5 0 4-6 7-6"/></svg></span><h3>Or if you know the basics,</h3></div>
+              <ul class="ticks">
+                <li>Every job posting asks for USD, Houdini or Katana.</li>
+                <li>You can open the software, but you can't read someone else's scene yet.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="card-head"><span class="diamond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.5 5.5a4 4 0 0 0-5 5L4 16l4 4 5.5-5.5a4 4 0 0 0 5-5l-2.5 2.5-3-1-1-3z"/></svg></span><h3>Or if you're the one who fixes things,</h3></div>
+              <ul class="ticks">
+                <li>Everyone comes to you when the pipeline breaks.</li>
+                <li>You want to build the tools, and the AI workflows, instead of patching around them.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="phone"><img src="img/sophie-portrait.jpg" width="1024" height="1536" alt="Sophie smiling in a pink blazer"></div>
+      </div>
+
+      <div class="truth">
+        <span class="spark" aria-hidden="true">✦</span>
+        <h2>Wherever you are, you can feel the studio from here. You just can't see the way in.</h2>
+        <p><b>It's not your fault.</b> Nobody showed you the map. Studios teach it on the job, on deadline, and almost never write it down. So I did.</p>
+      </div>
+      <p class="meanwhile">Meanwhile, the shows keep shipping.<span>And you know it's your turn.</span></p>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section id="courses" class="shop" aria-labelledby="courses-h">
+    <div class="wrap">
+      <span class="label eyebrow-line">Which is why I created</span>
+      <h2 id="courses-h" class="headline">Studio-Ready</h2>
+      <div class="shop-sub mono"><span>Four courses. Each one stands on its own. Take only what you need.</span><span>4 courses</span></div>
+      <div class="products">
+
+        <article class="product" id="c01">
+          <div class="cover-wrap"><div class="cover">
+            <div class="c-top"><span>Demoiselle Pixel</span><span>01</span></div>
+            <div class="c-title" style="font-size:clamp(1.1rem,1.8vw,1.45rem)">The Breakthrough</div>
+            <div class="c-sub">Studio Foundations · get hired</div>
+            <div class="c-art"><img src="img/sophie-desk.jpg" alt="" style="object-position:50% 25%"></div>
+            <div class="c-foot">Sophie Désaulniers</div>
+          </div></div>
+          <div class="p-body">
+            <h3>The Breakthrough</h3>
+            <span class="mono">For you if you keep hearing silence</span>
+            <p>How studios really hire, and how to do well once you're in: the industry map, the reel, the application, the interview, and your first weeks.</p>
+            <div class="p-foot">
+              <span class="status">Waitlist open</span>
+              <div class="p-links"><a href="#faq">Details</a><a class="go" href="#waitlist">Join the waitlist ↗</a></div>
+            </div>
+          </div>
         </article>
 
-        <div class="ornament"></div>
+        <article class="product" id="c02">
+          <div class="cover-wrap"><div class="cover">
+            <div class="c-top"><span>Demoiselle Pixel</span><span>02</span></div>
+            <div class="c-title">The Inside</div>
+            <div class="c-sub">Pipeline Studio Core · get inside</div>
+            <div class="c-art tan"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="1.4"><path d="M20 22 C 50 22, 50 40, 80 40"/><path d="M80 40 C 80 55, 20 50, 20 62"/><path d="M20 62 C 50 62, 50 80, 80 80"/></g><g fill="#33241E"><rect x="8" y="17" width="24" height="10"/><rect x="68" y="35" width="24" height="10"/><rect x="8" y="57" width="24" height="10"/></g><rect x="68" y="75" width="24" height="10" fill="#A6854D"/></svg></div>
+            <div class="c-foot">Sophie Désaulniers</div>
+          </div></div>
+          <div class="p-body">
+            <h3>The Inside</h3>
+            <span class="mono">For you if you're starting out</span>
+            <p>No experience needed. Follow one character through every studio department and build it yourself, from concept art to final comp. Capstone and certificate included.</p>
+            <div class="p-foot">
+              <span class="status">Waitlist open</span>
+              <div class="p-links"><a href="#inside">Details</a><a class="go" href="#waitlist">Join the waitlist ↗</a></div>
+            </div>
+          </div>
+        </article>
 
-        <!-- Category Grid -->
-        <div class="category-grid fade-in-scroll">
-            <div class="category-section">
-                <h3>Explore the blurb of her latest story should curiosity lead you</h3>
-                <div class="category-buttons">
-                    <button class="category-btn">Retro CG</button>
-                    <button class="category-btn">Tutorials</button>
-                    <button class="category-btn">Artist Story</button>
-                    <button class="category-btn">Studio</button>
-                    <button class="category-btn">Podcast</button>
-                    <button class="category-btn">Events</button>
-                    <button class="category-btn">Tech</button>
-                    <button class="category-btn">Arts</button>
-                </div>
+        <article class="product" id="c03">
+          <div class="cover-wrap"><div class="cover">
+            <div class="c-top"><span>Demoiselle Pixel</span><span>03</span></div>
+            <div class="c-title" style="font-size:clamp(1.1rem,1.8vw,1.45rem)">Production Workflows</div>
+            <div class="c-sub">USD · Katana · Nuke · go technical</div>
+            <div class="c-art caramel"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="1.2" opacity=".9"><circle cx="50" cy="50" r="10"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="34"/><path d="M50 0v100M0 50h100"/></g><circle cx="72" cy="50" r="4" fill="#33241E"/><circle cx="50" cy="16" r="4" fill="#A6854D"/></svg></div>
+            <div class="c-foot">Sophie Désaulniers</div>
+          </div></div>
+          <div class="p-body">
+            <h3>Production Workflows</h3>
+            <span class="mono">For you if you're ready to go technical</span>
+            <p>Procedural and node-based workflows, the way big studios run them. USD and Solaris, Mari and Katana look dev, Nuke, and how to debug a broken shot.</p>
+            <div class="p-foot">
+              <span class="status">In development</span>
+              <div class="p-links"><a class="go" href="#waitlist">Get notified ↗</a></div>
             </div>
-            <div class="category-images">
-                <div class="category-img-wrapper">
-                    <span class="category-label">vfx</span>
-                </div>
-                <div class="category-img-wrapper">
-                    <span class="category-label">cg</span>
-                </div>
-                <div class="category-img-wrapper">
-                    <span class="category-label">game</span>
-                </div>
+          </div>
+        </article>
+
+        <article class="product" id="c04">
+          <div class="cover-wrap"><div class="cover">
+            <div class="c-top"><span>Demoiselle Pixel</span><span>04</span></div>
+            <div class="c-title">Pipeline, TD &amp; AI</div>
+            <div class="c-sub">Workflows · build the pipeline</div>
+            <div class="c-art"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g font-family="IBM Plex Mono, monospace" font-size="6" fill="#F5EFE8"><text x="10" y="24">&gt; publish elf_v012</text><text x="10" y="36" fill="#C7B09A">  usd → maya → katana</text><text x="10" y="48">&gt; check handoff</text><text x="10" y="60" fill="#A6854D">  ✓ 0 errors</text><text x="10" y="72">&gt; _</text></g></svg></div>
+            <div class="c-foot">Sophie Désaulniers</div>
+          </div></div>
+          <div class="p-body">
+            <h3>Pipeline, TD &amp; AI Workflows</h3>
+            <span class="mono">For you if you want to build it</span>
+            <p>Every department again, from the pipeline TD's chair. Build the tools that connect Maya, Painter, Mari, Katana and Nuke, and learn where AI fits in a studio pipeline.</p>
+            <div class="p-foot">
+              <span class="status">In development</span>
+              <div class="p-links"><a class="go" href="#waitlist">Get notified ↗</a></div>
             </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Just imagine -->
+  <section class="imagine" aria-labelledby="imagine-h">
+    <div class="imagine-grid">
+      <div class="imagine-photo"><img src="img/studio-crowd.jpg" width="1536" height="1024" alt="A woman walking into a busy industry event with large screens"></div>
+      <div class="imagine-panel">
+        <h2 id="imagine-h">Just imagine…</h2>
+        <ul class="chev">
+          <li><b>Walking into your first studio day already knowing the map:</b> who hands what to whom, and what breaks at every handoff.</li>
+          <li><b>Reading a job posting and recognizing every word,</b> because you've built each of those steps yourself.</li>
+          <li><b>Being the candidate a supervisor is still talking about</b> after the call ends.</li>
+        </ul>
+        <div class="promise">
+          <h3>All of this can be learned, <span class="hl">my friend.</span></h3>
+          <p>You don't need to be special. You need someone to show you how it really works.</p>
+          <div class="rule"></div>
+          <span class="label">This is your time:</span>
+          <span class="big">Start where you are.</span>
+          <a class="btn" href="#waitlist">Join the waitlist</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section class="content-section section-darker" id="about">
-        <div class="about-section fade-in-scroll">
-            <div class="about-content">
-                <h2>Where Demoiselle Pixel gets her ideas</h2>
-                <p>Demoiselle Pixel curates a modern salon for the realms of art and technology, offering secretful insights into the makers and methods behind CG. Her approach is poised, intelligent, and richly artistic, inviting audiences into a world lit by curiosity and craftsmanship.</p>
-                <p>Bilingual Creative Specialist and Professor, Demoiselle Pixel provides refined training and demos on tools like Katana, Mari, and Nuke, and teaches LookDev, Lighting, Rendering and Compositing at University. With experience across global studios and acclaimed productions, she brings clarity, warmth, and feminine sophistication to the craft of making movies, series, games, and animation.</p>
-                <a href="#" class="read-more-btn">Read More</a>
-            </div>
-            <div class="about-sidebar">
-                <div class="about-image"></div>
-            </div>
+  <!-- The Inside -->
+  <section id="inside" class="inside" aria-labelledby="inside-h">
+    <div class="wrap">
+      <div class="inside-grid">
+        <div class="inside-copy">
+          <span class="label" style="color:var(--caramel-dk)">Inside Course 02 · The Inside</span>
+          <h2 id="inside-h" class="headline">One elf. Every department. <span class="hl">Built by you.</span></h2>
+          <p>You'll follow a single character, the elf from a young-children's show, through the whole studio. Each department opens with what it receives, what it hands on and what breaks at the handoff. Then you build it.</p>
+          <p>If you feel lost right now, that's fine. By the last department you won't be.</p>
         </div>
-    </section>
+        <figure class="graph" aria-label="The elf asset moving through the studio pipeline, from concept to final comp">
+          <div class="graph-bar"><span><i></i><i></i><i></i></span><span>elf_asset_v001</span></div>
+          <svg viewBox="0 0 420 430" role="img" aria-hidden="true">
+            <path class="g-wire" d="M150 52 C 220 52, 200 112, 270 112"/>
+            <path class="g-wire" d="M270 130 C 270 160, 150 150, 150 182"/>
+            <path class="g-wire" d="M150 200 C 220 200, 200 250, 270 250"/>
+            <path class="g-wire" d="M270 268 C 270 300, 150 290, 150 322"/>
+            <path class="g-wire" d="M150 340 C 220 340, 200 392, 270 392"/>
+            <rect class="g-node" x="30" y="34" width="120" height="36"/><circle class="g-port" cx="150" cy="52" r="4"/>
+            <text class="g-dept" x="42" y="27">CONCEPT ART</text><text class="g-label" x="42" y="57">elf_modelsheet</text>
+            <rect class="g-node" x="270" y="94" width="120" height="36"/><circle class="g-port" cx="270" cy="112" r="4"/>
+            <text class="g-dept" x="282" y="87">MODELLING · UV</text><text class="g-label" x="282" y="117">elf_model_uv</text>
+            <rect class="g-node" x="30" y="182" width="120" height="36"/><circle class="g-port" cx="150" cy="200" r="4"/>
+            <text class="g-dept" x="42" y="175">SURFACING</text><text class="g-label" x="42" y="205">elf_textures</text>
+            <rect class="g-node" x="270" y="232" width="120" height="36"/><circle class="g-port" cx="270" cy="250" r="4"/>
+            <text class="g-dept" x="282" y="225">RIGGING · ANIM</text><text class="g-label" x="282" y="255">elf_rig_anim</text>
+            <rect class="g-node" x="30" y="322" width="120" height="36"/><circle class="g-port" cx="150" cy="340" r="4"/>
+            <text class="g-dept" x="42" y="315">LIGHTING · RENDER</text><text class="g-label" x="42" y="345">elf_light_aovs</text>
+            <rect class="g-node g-node-hot" x="270" y="374" width="120" height="36"/><circle class="g-port-hot" cx="270" cy="392" r="4"/>
+            <text class="g-dept g-dept-hot" x="282" y="367">COMP · DELIVERY</text><text class="g-label g-label-hot" x="282" y="397">elf_final</text>
+          </svg>
+          <figcaption class="graph-foot">The same handoffs a real studio uses, from the first sketch to the final version.</figcaption>
+        </figure>
+      </div>
+      <ol class="chain" aria-label="The eleven courses of The Inside, in production order">
+        <li><code>C01</code><span>What is a pipeline</span></li>
+        <li><code>C02</code><span>Concept art</span></li>
+        <li><code>C03</code><span>Modelling</span></li>
+        <li><code>C04</code><span>Modelling polish &amp; export</span></li>
+        <li><code>C05</code><span>UV mapping</span></li>
+        <li><code>C06</code><span>Surfacing</span></li>
+        <li><code>C07</code><span>Rigging</span></li>
+        <li><code>C08</code><span>Layout &amp; animation</span></li>
+        <li><code>C09</code><span>Lighting &amp; rendering</span></li>
+        <li><code>C10</code><span>Compositing &amp; delivery</span></li>
+        <li class="final"><code>C11</code><span>The Chain: following one asset</span></li>
+      </ol>
+      <p class="tools">Built in <b>PureRef</b>, <b>Photoshop</b>, <b>Maya</b>, <b>Substance 3D Painter</b> and <b>Arnold</b>, with an introduction to <b>Houdini</b> groom, and tracked the studio way in <b>Flow Production Tracking</b>.</p>
+    </div>
+  </section>
 
-    <!-- Reviews Section -->
-    <section class="reviews-section">
-        <div class="reviews-container">
-            <h2 class="reviews-title">Reader Reviews for the Red Series</h2>
-            <div class="reviews-grid fade-in-scroll">
-                <div class="review-card">
-                    <p class="review-text">"Share a review of your latest work or your most famous one. Short press releases will also work. So will a testimonial from your fans."</p>
-                    <p class="review-author">- J. Burrows, Bookworm with Me</p>
-                </div>
-                <div class="review-card">
-                    <p class="review-text">"Share a review of your latest work or your most famous one. Short press releases will also work. So will a testimonial from your fans. Share a review of your latest work or your most famous one. Short press releases will also work."</p>
-                    <p class="review-author">- Lorna Olivares, Book vlogger</p>
-                </div>
-                <div class="review-card">
-                    <p class="review-text">"Share a review of your latest work or your most famous one. So will a testimonial from your most ardent readers and fans."</p>
-                    <p class="review-author">- Minnie Degassi, Venston Post</p>
-                </div>
-            </div>
+  <!-- How lessons work -->
+  <section class="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h" class="headline">Not which button. <span class="hl">Why studios press it.</span></h2>
+      <div class="steps">
+        <div class="step"><b>01</b><h3>The production problem</h3><p>A real situation from a real show, and why the problem exists in the first place.</p></div>
+        <div class="step"><b>02</b><h3>The studio's decision</h3><p>Why studios solve it the way they do, so the workflow finally makes sense.</p></div>
+        <div class="step"><b>03</b><h3>Build it yourself</h3><p>The software, step by step, then an exercise that leaves you with something real.</p></div>
+        <div class="step story"><b>+</b><h3>Inside production</h3><p>A story from me in every lesson: what went right, what went wrong, and what no manual tells you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hi, I'm Sophie -->
+  <section id="sophie" class="hi" aria-labelledby="sophie-h">
+    <div class="hi-photo">
+      <img src="img/sophie-hallway.jpg" width="1536" height="1024" alt="Sophie in a pink blazer at the end of a long wood-panelled hallway">
+      <div class="hi-title"><h2 id="sophie-h">Hi, I'm <span>Sophie</span></h2></div>
+    </div>
+    <div class="wrap">
+      <div class="founder">
+        <span class="pill">Founder of the</span>
+        <div class="wordmark"><small>DEMOISELLE PIXEL</small><b>Academy</b></div>
+        <div class="story">
+          <p>I spent eight years lighting and compositing shows at Atomic Cartoons, WildBrain, Mainframe and ICON Creative Studio. I learned most of it the hard way: on deadline, by breaking things, and by asking the questions everyone else was too nervous to ask.</p>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="content-section section-darker" id="contact">
-        <div class="contact-section fade-in-scroll">
-            <div class="contact-content">
-                <h2>Reach Demoiselle Pixel here:</h2>
-                <div class="contact-item">
-                    <p class="contact-label">Collab</p>
-                    <a href="mailto:collab@demoisellepixel.com" class="contact-link">collab@demoisellepixel.com</a>
-                </div>
-                <div class="contact-item">
-                    <p class="contact-label">Info</p>
-                    <a href="mailto:info@demoisellepixel.com" class="contact-link">info@demoisellepixel.com</a>
-                </div>
-            </div>
-            <div class="contact-image"></div>
+        <div class="quote">I learned it the hard way, so you don't have to.</div>
+        <div class="story">
+          <p>Then I moved to Foundry and spent three years helping more than 40 studios on two continents use their tools. I saw the same problems show up everywhere, and how differently each studio solves them. That's the part you can't get from a tutorial, and it's what I put in every lesson.</p>
+          <p>Since 2023 I've taught 3D animation and pipeline at Emily Carr University. Every term I watch talented people hit the same wall I hit. You don't need to be special to get through it. You need someone to show you the map.</p>
         </div>
-    </section>
+        <span class="sign">Everyone can do this. Including you.</span>
+        <a class="btn" href="#waitlist">Join the waitlist</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="#" class="social-link" aria-label="Instagram">IG</a>
-            <a href="#" class="social-link" aria-label="Twitter">TW</a>
-            <a href="#" class="social-link" aria-label="Facebook">FB</a>
-            <a href="#" class="social-link" aria-label="LinkedIn">IN</a>
+  <!-- Waitlist -->
+  <section id="waitlist" class="join-sec" aria-labelledby="join-h">
+    <div class="wrap join-grid">
+      <div>
+        <span class="label">The waitlist</span>
+        <h2 id="join-h" class="headline">Be first in when <span class="hl-y">doors open.</span></h2>
+        <p>Tell me which course you're waiting for. You'll hear first when it opens, with early-bird pricing.</p>
+      </div>
+      <form class="join" id="join-form" novalidate>
+        <div class="field"><label for="f-name">First name</label><input id="f-name" name="name" autocomplete="given-name" placeholder="Your first name"></div>
+        <div class="field">
+          <label for="f-course">I'm most interested in</label>
+          <select id="f-course" name="course">
+            <option>01 · The Breakthrough</option>
+            <option>02 · The Inside</option>
+            <option>03 · Production Workflows</option>
+            <option>04 · Pipeline, TD &amp; AI Workflows</option>
+            <option>Not sure yet</option>
+          </select>
         </div>
-        <p class="footer-text">Demoiselle Pixel © 2024</p>
-    </footer>
+        <button class="btn" type="submit">Join the waitlist</button>
+        <p class="form-msg" id="form-msg" role="status"></p>
+        <p class="privacy">This opens an email to info@demoisellepixel.com. No spam, ever.</p>
+      </form>
+    </div>
+  </section>
 
-    <script>
-        // Smooth scroll functionality
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+  <!-- FAQ -->
+  <section id="faq" class="faq" aria-labelledby="faq-h">
+    <div class="wrap narrow">
+      <h2 id="faq-h" class="headline center">Before you <span class="hl">choose.</span></h2>
+      <details>
+        <summary>I'm a complete beginner. Is there a course for me?</summary>
+        <p>Yes. The Inside is written for you: someone getting ready for art school, or teaching themselves on a budget. You don't need any studio experience. If you feel lost right now, you won't by the end.</p>
+      </details>
+      <details>
+        <summary>Which course should I start with?</summary>
+        <p>Start with the one that matches where you are today. Starting out: The Inside. Applying and hearing nothing: The Breakthrough. Comfortable with the basics and ready for procedural work: Production Workflows. Want to build the tools and bring AI into the pipeline: Pipeline, TD &amp; AI Workflows. Not sure? Pick "Not sure yet" on the waitlist and I'll point you to the right one.</p>
+      </details>
+      <details>
+        <summary>Do I need to take them in order?</summary>
+        <p>No. Each course stands on its own and never assumes you've seen another one.</p>
+      </details>
+      <details>
+        <summary>What software do I need?</summary>
+        <p>The Breakthrough needs none. The Inside uses Maya, Substance 3D Painter and Arnold, plus PureRef and Photoshop for concept art. Student and learning versions work for the exercises.</p>
+      </details>
+      <details>
+        <summary>Do I get a certificate?</summary>
+        <p>The Inside ends with a capstone project: the full elf, through every department. Finishing it earns your certificate of completion.</p>
+      </details>
+      <details>
+        <summary>How much does it cost?</summary>
+        <p>Each course is priced on its own. Prices go to the waitlist first, along with early-bird pricing.</p>
+      </details>
+    </div>
+  </section>
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <!-- Open door -->
+  <section class="door" aria-labelledby="door-h">
+    <div class="wrap door-grid">
+      <div class="door-copy">
+        <h2 id="door-h" class="headline">Still not sure which one is yours? <span class="hl">Ask me.</span></h2>
+        <p>Everything here can be figured out. Write to me at info@demoisellepixel.com and tell me where you're stuck.</p>
+        <a class="btn" href="mailto:info@demoisellepixel.com?subject=Which%20course%20is%20for%20me%3F">Write to me</a>
+      </div>
+      <div class="door-photo"><img src="img/sophie-couch.jpg" width="1024" height="1536" alt="Sophie smiling on a leather sofa"></div>
+    </div>
+  </section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+</main>
 
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in-scroll').forEach(el => {
-            observer.observe(el);
-        });
+<footer>
+  <div class="wrap">
+    <p class="motto">The course that didn't exist when I <span>needed it.</span></p>
+    <div class="foot-cols">
+      <div><a class="brand" href="#top" aria-label="Back to top"><span class="cameo" aria-hidden="true"></span><span><b>Demoiselle Pixel</b><span>ACADEMY</span></span></a></div>
+      <div><h4>Courses</h4><ul><li><a href="#c01">The Breakthrough</a></li><li><a href="#c02">The Inside</a></li><li><a href="#c03">Production Workflows</a></li><li><a href="#c04">Pipeline, TD &amp; AI</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="#sophie">Meet Sophie</a></li><li><a href="#waitlist">Waitlist</a></li><li><a href="#faq">FAQ</a></li><li><a href="mailto:info@demoisellepixel.com">info@demoisellepixel.com</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li>Instagram</li><li>TikTok</li><li>YouTube</li><li>LinkedIn</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Demoiselle Pixel Academy</span><span>demoisellepixel.com</span></div>
+  </div>
+</footer>
 
-        // Add parallax effect to hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero-content');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
-            }
-        });
-    </script>
+<script>
+document.getElementById('join-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var name = document.getElementById('f-name').value.trim();
+  var course = document.getElementById('f-course').value;
+  var body = 'Hi Sophie,\n\nPlease add me to the waitlist for: ' + course + '.\n\n' + (name ? 'Thanks,\n' + name : 'Thanks!');
+  window.location.href = 'mailto:info@demoisellepixel.com?subject=' + encodeURIComponent('Waitlist: ' + course) + '&body=' + encodeURIComponent(body);
+  document.getElementById('form-msg').textContent = 'Your email app should open with the message ready. If it doesn\'t, write to info@demoisellepixel.com.';
+});
+</script>
 </body>
 </html>
