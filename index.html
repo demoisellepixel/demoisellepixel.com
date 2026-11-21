@@ -47,6 +47,13 @@
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+/* The design is drawn for a ~1280px-wide screen. On wider screens, scale the whole page up
+   so it keeps the same full, bold proportions instead of shrinking into a narrow centre column. */
+@media (min-width: 1440px) { body { zoom: 1.12; } }
+@media (min-width: 1600px) { body { zoom: 1.25; } }
+@media (min-width: 1800px) { body { zoom: 1.4; } }
+@media (min-width: 2200px) { body { zoom: 1.7; } }
+@media (min-width: 2800px) { body { zoom: 2.1; } }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 p { margin: 0; }
@@ -124,14 +131,19 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .pillar b { font: 300 clamp(2rem, 3.6vw, 3.3rem)/1 var(--display); letter-spacing: -0.01em; }
 .pillar span { font: 600 0.74rem/1.5 var(--display); letter-spacing: 0.24em; text-transform: uppercase; color: var(--root); }
 .pillar:hover b { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
-@media (max-width: 860px) { .pillar-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; } .pillar:nth-child(3) { border-left: 0; } }
+@media (max-width: 560px) { .pillar-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; } .pillar:nth-child(3) { border-left: 0; } }
 @media (max-width: 480px) { .pillar-row { grid-template-columns: 1fr; } .pillar + .pillar { border-left: 0; border-top: 1px solid rgba(77,51,40,.3); padding-top: 28px; } }
 
 /* Holding you back */
-.back-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(32px, 5vw, 80px); align-items: start; }
-@media (max-width: 960px) { .back-grid { grid-template-columns: 1fr; } }
+/* Template layout: intro line across the top, cards ~62% on the left, phone on the right beside the heading */
+.back-intro { font-size: clamp(1.05rem, 1.5vw, 1.25rem); max-width: 70ch; margin-bottom: clamp(32px, 4vw, 48px); }
+/* Template positions: cards take the left ~55% of the screen, the phone sits on the far right edge of the content */
+/* Phone stays on the far right at every window width down to phone size; it only stacks on real phones */
+.back-grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(170px, 21vw, 270px); gap: clamp(28px, 9vw, 160px); align-items: start; }
+.back-grid .phone { justify-self: end; margin: 0; width: 100%; }
+@media (max-width: 640px) { .back-grid { grid-template-columns: 1fr; } .back-grid .phone { justify-self: center; width: min(260px, 75%); } }
 .rule { width: 84px; height: 1px; background: var(--caramel); margin-bottom: 28px; }
-.back h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); color: var(--root); margin-bottom: 36px; }
+.back h2 { font-size: clamp(2.2rem, 4.4vw, 3.8rem); color: var(--root); margin-bottom: 36px; }
 .cards { display: flex; flex-direction: column; gap: 22px; }
 .card { background: var(--white); border: 1px solid var(--line); padding: clamp(24px, 3.4vw, 40px); }
 .card-head { display: flex; align-items: center; gap: 22px; margin-bottom: 14px; }
@@ -143,22 +155,56 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .ticks li { position: relative; padding-left: 34px; }
 .ticks li::before { content: ""; position: absolute; left: 4px; top: 0.62em; width: 9px; height: 9px; background: var(--tan); transform: rotate(45deg); }
 /* Light silver phone frame, sitting beside the heading like the reference (not sticky) */
-.phone { position: relative; margin: 8px auto 0; width: min(330px, 100%); aspect-ratio: 9 / 18.5; padding: 9px; border-radius: 50px;
+.phone { position: relative; margin: 8px auto 0; width: min(270px, 100%); aspect-ratio: 9 / 18.5; padding: 9px; border-radius: 44px;
   background: linear-gradient(145deg, #F7F3EE 0%, #D9D2C8 45%, #EFEAE3 70%, #C9C1B6 100%);
   box-shadow: 0 0 0 1px #BDB4A8, 0 50px 80px -40px rgba(51, 36, 30, .55), 0 18px 40px -20px rgba(51, 36, 30, .25); }
 .phone::before, .phone::after { content: ""; position: absolute; width: 4px; border-radius: 2px; background: #C9C1B6; }
 .phone::before { left: -4px; top: 20%; height: 8%; box-shadow: 0 90px 0 #C9C1B6; }
 .phone::after { right: -4px; top: 26%; height: 13%; }
-.phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 41px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
-@media (max-width: 960px) { .phone { width: min(300px, 80%); } }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 36px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
 
 .truth { background: var(--navy); color: var(--on-navy); text-align: center; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 80px); margin-top: clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 22px; align-items: center; }
 .truth .spark { color: var(--caramel); font-size: 2rem; line-height: 1; }
 .back .truth h2 { font: 800 clamp(1.7rem, 3.4vw, 2.7rem)/1.15 var(--display); max-width: 26ch; color: var(--on-navy); margin: 0; }
 .truth p { color: var(--on-navy-muted); max-width: 62ch; font-size: 1.08rem; }
 .truth p b { color: var(--on-navy); }
-.meanwhile { text-align: center; padding-top: clamp(48px, 6vw, 80px); font: 800 clamp(1.5rem, 3vw, 2.3rem)/1.2 var(--display); color: var(--root); }
+.meanwhile-band { background: var(--cream-2); padding: clamp(36px, 5vw, 64px) 16px; }
+.meanwhile { text-align: center; font: 800 clamp(1.5rem, 3vw, 2.3rem)/1.2 var(--display); color: var(--root); }
 .meanwhile span { display: block; color: var(--caramel-dk); }
+
+/* Quote cards (template testimonial row): round photo overlapping the top, centred quote, script signature */
+.notes { background: var(--white); }
+.notes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); }
+@media (max-width: 640px) { .notes-grid { grid-template-columns: 1fr; row-gap: 90px; } }
+.note { margin: 70px 0 0; background: var(--cream); padding: 96px clamp(24px, 4vw, 64px) 40px; text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.note-photo { position: absolute; top: -70px; left: 50%; transform: translateX(-50%); width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 4px solid var(--white); }
+.note blockquote { margin: 0; font-size: 1.08rem; line-height: 1.85; }
+.note-sign { font-family: var(--script); font-size: 2.8rem; line-height: 1; color: var(--caramel-dk); }
+
+/* It's true: three diamond columns */
+.true { text-align: center; }
+.true-label { display: block; color: var(--root); margin-bottom: 14px; }
+.true-h { font-size: clamp(1.9rem, 4vw, 3.2rem); color: var(--root); max-width: 22ch; margin: 0 auto clamp(40px, 5vw, 64px); }
+.true-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 56px); }
+@media (max-width: 560px) { .true-grid { grid-template-columns: 1fr; } }
+.true-col { display: flex; flex-direction: column; align-items: center; gap: 26px; }
+.true-col p { max-width: 30ch; font-size: 1.08rem; }
+.diamond.big { width: 130px; height: 130px; }
+.diamond.big::before { inset: 20px; }
+.diamond.big svg { width: 40px; height: 40px; }
+
+/* Which is why I created the… */
+.created { background: var(--navy); color: var(--on-navy); }
+.created-label { text-align: center; color: var(--on-navy); margin-bottom: 18px; }
+.created-h { text-align: center; font: 800 clamp(2rem, 4.4vw, 3.4rem)/1.1 var(--display); margin-bottom: clamp(28px, 4vw, 44px); }
+.created-box { max-width: 1120px; margin: 0 auto; color: var(--ink); text-align: center; }
+.created-head { background: var(--caramel); color: #fff; padding: clamp(28px, 4vw, 44px) 16px; }
+.created-head small { display: block; font: 600 0.85rem/1 var(--display); letter-spacing: 0.6em; padding-left: .6em; margin-bottom: 16px; }
+.created-head b { display: block; font: 300 clamp(2rem, 5vw, 3.8rem)/1 var(--display); letter-spacing: 0.24em; padding-left: .24em; text-transform: uppercase; }
+.created-body { background: var(--white); padding: clamp(28px, 4vw, 52px) clamp(20px, 5vw, 72px); display: flex; flex-direction: column; gap: 18px; font-size: 1.08rem; }
+.created-band { background: var(--cream-2); padding: clamp(28px, 4vw, 52px) clamp(20px, 5vw, 72px); display: flex; flex-direction: column; gap: 18px; font-size: 1.08rem; }
+.created-strong { font: 800 1.2rem/1.3 var(--display); }
+.created-cta { margin-top: clamp(32px, 4vw, 48px); }
 
 /* Courses (Futur-style product grid) */
 .shop { background: var(--brown-deep); color: var(--cream); }
@@ -166,13 +212,13 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .shop h2 { font-size: clamp(2.8rem, 8vw, 6.6rem); }
 .shop-sub { display: flex; justify-content: space-between; gap: 16px; padding-block: 16px 22px; border-bottom: 2px solid var(--cream); margin-bottom: 36px; color: #cfcfcf; }
 .products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
-@media (max-width: 1080px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .products { grid-template-columns: 1fr; } }
-.product { display: flex; flex-direction: column; background: #33241E; min-width: 0; }
+.product { container-type: inline-size; display: flex; flex-direction: column; background: #33241E; min-width: 0; }
 .cover-wrap { background: var(--cream-2); padding: 28px 18% 30px; }
-.cover { aspect-ratio: 3 / 4; background: #fff; box-shadow: -10px 16px 30px -10px rgba(0,0,0,.45); padding: 9% 9% 7%; display: flex; flex-direction: column; color: var(--ink); }
+.cover { container-type: inline-size; aspect-ratio: 3 / 4; background: #fff; box-shadow: -10px 16px 30px -10px rgba(0,0,0,.45); padding: 9% 9% 7%; display: flex; flex-direction: column; color: var(--ink); }
 .cover .c-top { font: 500 0.42rem/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; border-bottom: 1px solid var(--ink); padding-bottom: 6%; margin-bottom: 8%; }
-.cover .c-title { font: 900 clamp(1.3rem, 2.2vw, 1.75rem)/0.9 var(--display); text-transform: uppercase; letter-spacing: -0.02em; }
+.cover .c-title { font: 900 11cqi/0.92 var(--display); text-transform: uppercase; letter-spacing: -0.02em; }
 .cover .c-sub { font: 500 0.45rem/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; margin-top: 6%; color: var(--muted); }
 .cover .c-art { flex: 1; margin-top: 8%; min-height: 0; background: var(--navy); position: relative; overflow: hidden; }
 .cover .c-art img { width: 100%; height: 100%; object-fit: cover; }
@@ -180,14 +226,14 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .cover .c-art.caramel { background: var(--caramel); }
 .cover .c-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .cover .c-foot { font: 500 0.4rem/1 var(--mono); letter-spacing: .3em; text-transform: uppercase; text-align: center; margin-top: 7%; color: var(--muted); }
-.p-body { padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-.p-body h3 { font: 800 clamp(1.5rem, 2.2vw, 1.85rem)/1.08 var(--display); letter-spacing: -0.01em; }
+.p-body { padding: min(26px, 9cqi) min(26px, 9cqi) 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.p-body h3 { font: 800 min(1.85rem, 11cqi)/1.08 var(--display); letter-spacing: -0.01em; }
 .p-body .mono { color: #a9a9a9; }
 .p-body p { color: #c9c9c9; font-size: 0.95rem; line-height: 1.6; }
 .p-foot { margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(248,235,213,.18); display: flex; flex-direction: column; gap: 14px; }
-.status { font: 800 1.35rem/1 var(--display); }
+.status { font: 800 min(1.35rem, 9cqi)/1.1 var(--display); }
 .status small { font: 500 0.72rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #9a9a9a; margin-left: 8px; }
-.p-links { display: flex; gap: 22px; font-size: 0.95rem; }
+.p-links { display: flex; gap: 8px 22px; flex-wrap: wrap; font-size: min(0.95rem, 7.5cqi); }
 .p-links a { text-decoration: none; color: #d6d6d6; }
 .p-links a.go { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; }
 .p-links a:hover { color: var(--yellow); }
@@ -195,7 +241,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 /* Just imagine */
 .imagine { position: relative; padding: 0; background: var(--navy); }
 .imagine-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); min-height: 100%; }
-@media (max-width: 900px) { .imagine-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .imagine-grid { grid-template-columns: 1fr; } }
 .imagine-photo { position: relative; min-height: 380px; }
 .imagine-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
 .imagine-panel { color: var(--on-navy); padding: clamp(48px, 7vw, 96px) clamp(16px, 5vw, 72px); display: flex; flex-direction: column; gap: 30px; }
@@ -213,7 +259,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 /* The Inside */
 .inside { background: var(--white); }
 .inside-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; margin-bottom: 56px; }
-@media (max-width: 900px) { .inside-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .inside-grid { grid-template-columns: 1fr; } }
 .inside-copy { display: flex; flex-direction: column; gap: 22px; }
 .inside-copy h2 { font-size: clamp(2.3rem, 4.8vw, 4rem); color: var(--root); }
 .inside-copy p { color: var(--muted); max-width: 54ch; }
@@ -239,7 +285,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 
 /* How lessons work */
 .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 48px; }
-@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
 .step { border-top: 3px solid var(--navy); padding-top: 20px; display: flex; flex-direction: column; gap: 10px; }
 .step b { font: 900 2.4rem/1 var(--display); color: var(--tan); }
@@ -252,8 +298,10 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .hi { padding: 0; background: var(--white); }
 .hi-photo { position: relative; height: clamp(380px, 52vw, 640px); overflow: hidden; }
 .hi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% 40%; }
-.hi-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(51,36,30,.55), rgba(51,36,30,.05) 70%); }
-.hi-title { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; padding-inline: clamp(20px, 8vw, 140px); color: #fff; }
+.hi-photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(51,36,30,.45), rgba(51,36,30,.15) 70%); }
+.hi-title { position: absolute; inset: 0 0 clamp(60px, 10vw, 140px); z-index: 1; display: flex; align-items: center; justify-content: center; padding-inline: 16px; color: #fff; text-align: center; }
+.founder-sub { font: 800 clamp(1.4rem, 2.6vw, 2rem)/1.1 var(--display); color: var(--root); margin-top: -8px; }
+.founder-list { align-self: stretch; font-size: 1.05rem; gap: 16px; }
 .hi-title h2 { font: 800 clamp(3rem, 8vw, 6.4rem)/1 var(--display); letter-spacing: -0.02em; text-shadow: 0 2px 30px rgba(0,0,0,.25); }
 .hi-title h2 span { font-family: var(--script); font-weight: 400; font-size: 1.35em; letter-spacing: 0; margin-left: .1em; }
 .founder { position: relative; z-index: 2; margin: clamp(-140px, -10vw, -60px) auto 0; max-width: 1000px; background: var(--cream); padding: clamp(36px, 5vw, 72px) clamp(20px, 6vw, 80px); display: flex; flex-direction: column; align-items: center; gap: 24px; }
@@ -266,7 +314,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 /* Waitlist */
 .join-sec { background: var(--navy); color: var(--on-navy); }
 .join-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
-@media (max-width: 860px) { .join-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .join-grid { grid-template-columns: 1fr; } }
 .join-sec h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); margin: 16px 0 20px; }
 .join-sec .label { color: var(--caramel); }
 .join-sec p { color: var(--on-navy-muted); }
@@ -355,15 +403,90 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
     </div>
   </section>
 
-  <!-- Four pillars -->
-  <section class="pillars" aria-labelledby="pillars-h">
+  <!-- Courses -->
+  <section id="courses" class="shop" aria-labelledby="courses-h">
     <div class="wrap">
-      <h2 id="pillars-h" class="headline">Four pillars. One way in.</h2>
-      <div class="pillar-row">
-        <a class="pillar" href="#c01"><b>Get hired</b><span>01 · The Breakthrough</span></a>
-        <a class="pillar" href="#c02"><b>Get inside</b><span>02 · The Inside</span></a>
-        <a class="pillar" href="#c03"><b>Go technical</b><span>03 · Production Workflows</span></a>
-        <a class="pillar" href="#c04"><b>Build it</b><span>04 · Pipeline, TD &amp; AI</span></a>
+      <span class="label eyebrow-line">Four pillars. One way in.</span>
+      <h2 id="courses-h" class="headline">Studio-Ready</h2>
+      <div class="shop-sub mono"><span>Four courses. Each one stands on its own. Take only what you need.</span><span>4 courses</span></div>
+      <div class="products">
+
+        <article class="product" id="c01">
+          <div class="cover-wrap"><div class="cover">
+            <div class="c-top"><span>Demoiselle Pixel</span><span>01</span></div>
+            <div class="c-title">The Breakthrough</div>
+            <div class="c-sub">Studio Foundations · get hired</div>
+            <div class="c-art"><img src="img/sophie-desk.jpg" alt="" style="object-position:50% 25%"></div>
+            <div class="c-foot">Sophie Désaulniers</div>
+          </div></div>
+          <div class="p-body">
+            <h3>The Breakthrough</h3>
+            <span class="mono">For you if you keep hearing silence</span>
+            <p>How studios really hire, and how to do well once you're in: the industry map, the reel, the application, the interview, and your first weeks.</p>
+            <div class="p-foot">
+              <span class="status">Waitlist open</span>
+              <div class="p-links"><a href="#faq">Details</a><a class="go" href="#waitlist">Join the waitlist ↗</a></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" id="c02">
+          <div class="cover-wrap"><div class="cover">
+            <div class="c-top"><span>Demoiselle Pixel</span><span>02</span></div>
+            <div class="c-title">The Inside</div>
+            <div class="c-sub">Pipeline Studio Core · get inside</div>
+            <div class="c-art tan"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="1.4"><path d="M20 22 C 50 22, 50 40, 80 40"/><path d="M80 40 C 80 55, 20 50, 20 62"/><path d="M20 62 C 50 62, 50 80, 80 80"/></g><g fill="#33241E"><rect x="8" y="17" width="24" height="10"/><rect x="68" y="35" width="24" height="10"/><rect x="8" y="57" width="24" height="10"/></g><rect x="68" y="75" width="24" height="10" fill="#A6854D"/></svg></div>
+            <div class="c-foot">Sophie Désaulniers</div>
+          </div></div>
+          <div class="p-body">
+            <h3>The Inside</h3>
+            <span class="mono">For you if you're starting out</span>
+            <p>No experience needed. Follow one character through every studio department and build it yourself, from concept art to final comp. Capstone and certificate included.</p>
+            <div class="p-foot">
+              <span class="status">Waitlist open</span>
+              <div class="p-links"><a href="#inside">Details</a><a class="go" href="#waitlist">Join the waitlist ↗</a></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" id="c03">
+          <div class="cover-wrap"><div class="cover">
+            <div class="c-top"><span>Demoiselle Pixel</span><span>03</span></div>
+            <div class="c-title">Production Workflows</div>
+            <div class="c-sub">USD · Katana · Nuke · go technical</div>
+            <div class="c-art caramel"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="1.2" opacity=".9"><circle cx="50" cy="50" r="10"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="34"/><path d="M50 0v100M0 50h100"/></g><circle cx="72" cy="50" r="4" fill="#33241E"/><circle cx="50" cy="16" r="4" fill="#A6854D"/></svg></div>
+            <div class="c-foot">Sophie Désaulniers</div>
+          </div></div>
+          <div class="p-body">
+            <h3>Production Workflows</h3>
+            <span class="mono">For you if you're ready to go technical</span>
+            <p>Procedural and node-based workflows, the way big studios run them. USD and Solaris, Mari and Katana look dev, Nuke, and how to debug a broken shot.</p>
+            <div class="p-foot">
+              <span class="status">In development</span>
+              <div class="p-links"><a class="go" href="#waitlist">Get notified ↗</a></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" id="c04">
+          <div class="cover-wrap"><div class="cover">
+            <div class="c-top"><span>Demoiselle Pixel</span><span>04</span></div>
+            <div class="c-title">Pipeline, TD &amp; AI</div>
+            <div class="c-sub">Workflows · build the pipeline</div>
+            <div class="c-art"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g font-family="IBM Plex Mono, monospace" font-size="6" fill="#F5EFE8"><text x="10" y="24">&gt; publish elf_v012</text><text x="10" y="36" fill="#C7B09A">  usd → maya → katana</text><text x="10" y="48">&gt; check handoff</text><text x="10" y="60" fill="#A6854D">  ✓ 0 errors</text><text x="10" y="72">&gt; _</text></g></svg></div>
+            <div class="c-foot">Sophie Désaulniers</div>
+          </div></div>
+          <div class="p-body">
+            <h3>Pipeline, TD &amp; AI Workflows</h3>
+            <span class="mono">For you if you want to build it</span>
+            <p>Every department again, from the pipeline TD's chair. Build the tools that connect Maya, Painter, Mari, Katana and Nuke, and learn where AI fits in a studio pipeline.</p>
+            <div class="p-foot">
+              <span class="status">In development</span>
+              <div class="p-links"><a class="go" href="#waitlist">Get notified ↗</a></div>
+            </div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -371,6 +494,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <!-- What's holding you back -->
   <section class="back" aria-labelledby="back-h">
     <div class="wrap">
+      <p class="back-intro">Whether you're just starting out or already working in the industry: you're here because you want to be on the inside, where the shows get made.</p>
       <div class="back-grid">
         <div>
           <div class="rule"></div>
@@ -415,94 +539,46 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
         <h2>Wherever you are, you can feel the studio from here. You just can't see the way in.</h2>
         <p><b>It's not your fault.</b> Nobody showed you the map. Studios teach it on the job, on deadline, and almost never write it down. So I did.</p>
       </div>
-      <p class="meanwhile">Meanwhile, the shows keep shipping.<span>And you know it's your turn.</span></p>
     </div>
   </section>
 
-  <!-- Courses -->
-  <section id="courses" class="shop" aria-labelledby="courses-h">
+  <!-- Meanwhile (cream band, like the template) -->
+  <div class="meanwhile-band"><p class="meanwhile">Meanwhile, the shows keep shipping.<span>And you know deep down it's your turn.</span></p></div>
+
+  <!-- Two quote cards with round photos and a signature, like the template's testimonial row -->
+  <section class="notes" aria-label="Notes from Sophie">
+    <div class="wrap notes-grid">
+      <figure class="note">
+        <img class="note-photo" src="img/sophie-desk.jpg" width="1024" height="1536" alt="Sophie at her desk">
+        <blockquote>"I learned lighting and comp <b>on deadline, by breaking things</b>, and by asking the questions everyone else was too nervous to ask. <b>You shouldn't have to learn it that way.</b>"</blockquote>
+        <figcaption class="note-sign">Sophie</figcaption>
+      </figure>
+      <figure class="note">
+        <img class="note-photo" src="img/sophie-couch.jpg" width="1024" height="1536" alt="Sophie on a leather sofa">
+        <blockquote>"Every term I watch talented people hit the same wall I hit. <b>You don't need to be special to get through it.</b> You need someone to show you the map, <b>and that's what every lesson is.</b>"</blockquote>
+        <figcaption class="note-sign">Sophie</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- It's true: three diamond-icon columns, like the template -->
+  <section class="true" aria-labelledby="true-h">
     <div class="wrap">
-      <span class="label eyebrow-line">Which is why I created</span>
-      <h2 id="courses-h" class="headline">Studio-Ready</h2>
-      <div class="shop-sub mono"><span>Four courses. Each one stands on its own. Take only what you need.</span><span>4 courses</span></div>
-      <div class="products">
-
-        <article class="product" id="c01">
-          <div class="cover-wrap"><div class="cover">
-            <div class="c-top"><span>Demoiselle Pixel</span><span>01</span></div>
-            <div class="c-title" style="font-size:clamp(1.1rem,1.8vw,1.45rem)">The Breakthrough</div>
-            <div class="c-sub">Studio Foundations · get hired</div>
-            <div class="c-art"><img src="img/sophie-desk.jpg" alt="" style="object-position:50% 25%"></div>
-            <div class="c-foot">Sophie Désaulniers</div>
-          </div></div>
-          <div class="p-body">
-            <h3>The Breakthrough</h3>
-            <span class="mono">For you if you keep hearing silence</span>
-            <p>How studios really hire, and how to do well once you're in: the industry map, the reel, the application, the interview, and your first weeks.</p>
-            <div class="p-foot">
-              <span class="status">Waitlist open</span>
-              <div class="p-links"><a href="#faq">Details</a><a class="go" href="#waitlist">Join the waitlist ↗</a></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="product" id="c02">
-          <div class="cover-wrap"><div class="cover">
-            <div class="c-top"><span>Demoiselle Pixel</span><span>02</span></div>
-            <div class="c-title">The Inside</div>
-            <div class="c-sub">Pipeline Studio Core · get inside</div>
-            <div class="c-art tan"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="1.4"><path d="M20 22 C 50 22, 50 40, 80 40"/><path d="M80 40 C 80 55, 20 50, 20 62"/><path d="M20 62 C 50 62, 50 80, 80 80"/></g><g fill="#33241E"><rect x="8" y="17" width="24" height="10"/><rect x="68" y="35" width="24" height="10"/><rect x="8" y="57" width="24" height="10"/></g><rect x="68" y="75" width="24" height="10" fill="#A6854D"/></svg></div>
-            <div class="c-foot">Sophie Désaulniers</div>
-          </div></div>
-          <div class="p-body">
-            <h3>The Inside</h3>
-            <span class="mono">For you if you're starting out</span>
-            <p>No experience needed. Follow one character through every studio department and build it yourself, from concept art to final comp. Capstone and certificate included.</p>
-            <div class="p-foot">
-              <span class="status">Waitlist open</span>
-              <div class="p-links"><a href="#inside">Details</a><a class="go" href="#waitlist">Join the waitlist ↗</a></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="product" id="c03">
-          <div class="cover-wrap"><div class="cover">
-            <div class="c-top"><span>Demoiselle Pixel</span><span>03</span></div>
-            <div class="c-title" style="font-size:clamp(1.1rem,1.8vw,1.45rem)">Production Workflows</div>
-            <div class="c-sub">USD · Katana · Nuke · go technical</div>
-            <div class="c-art caramel"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="1.2" opacity=".9"><circle cx="50" cy="50" r="10"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="34"/><path d="M50 0v100M0 50h100"/></g><circle cx="72" cy="50" r="4" fill="#33241E"/><circle cx="50" cy="16" r="4" fill="#A6854D"/></svg></div>
-            <div class="c-foot">Sophie Désaulniers</div>
-          </div></div>
-          <div class="p-body">
-            <h3>Production Workflows</h3>
-            <span class="mono">For you if you're ready to go technical</span>
-            <p>Procedural and node-based workflows, the way big studios run them. USD and Solaris, Mari and Katana look dev, Nuke, and how to debug a broken shot.</p>
-            <div class="p-foot">
-              <span class="status">In development</span>
-              <div class="p-links"><a class="go" href="#waitlist">Get notified ↗</a></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="product" id="c04">
-          <div class="cover-wrap"><div class="cover">
-            <div class="c-top"><span>Demoiselle Pixel</span><span>04</span></div>
-            <div class="c-title">Pipeline, TD &amp; AI</div>
-            <div class="c-sub">Workflows · build the pipeline</div>
-            <div class="c-art"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g font-family="IBM Plex Mono, monospace" font-size="6" fill="#F5EFE8"><text x="10" y="24">&gt; publish elf_v012</text><text x="10" y="36" fill="#C7B09A">  usd → maya → katana</text><text x="10" y="48">&gt; check handoff</text><text x="10" y="60" fill="#A6854D">  ✓ 0 errors</text><text x="10" y="72">&gt; _</text></g></svg></div>
-            <div class="c-foot">Sophie Désaulniers</div>
-          </div></div>
-          <div class="p-body">
-            <h3>Pipeline, TD &amp; AI Workflows</h3>
-            <span class="mono">For you if you want to build it</span>
-            <p>Every department again, from the pipeline TD's chair. Build the tools that connect Maya, Painter, Mari, Katana and Nuke, and learn where AI fits in a studio pipeline.</p>
-            <div class="p-foot">
-              <span class="status">In development</span>
-              <div class="p-links"><a class="go" href="#waitlist">Get notified ↗</a></div>
-            </div>
-          </div>
-        </article>
-
+      <span class="label true-label">It's true:</span>
+      <h2 id="true-h" class="headline true-h">Studios are asking for <span class="hl">artists who know the pipeline.</span></h2>
+      <div class="true-grid">
+        <div class="true-col">
+          <span class="diamond big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="7" height="6"/><rect x="14" y="14" width="7" height="6"/><path d="M10 7h4a3 3 0 0 1 3 3v4"/></svg></span>
+          <p>Every department hands its work to the next one, and <b>every handoff is where shots break.</b></p>
+        </div>
+        <div class="true-col">
+          <span class="diamond big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+          <p>Job postings ask for <b>USD, Houdini, Katana and Nuke,</b> not just one piece of software.</p>
+        </div>
+        <div class="true-col">
+          <span class="diamond big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>
+          <p>Shows are made <b>across continents and time zones</b> + you can learn the pipeline from anywhere.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -526,6 +602,55 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
           <span class="big">Start where you are.</span>
           <a class="btn" href="#waitlist">Join the waitlist</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Which is why I created the… (template box: beige header, white body, sand band, white close) -->
+  <section class="created" aria-labelledby="created-h">
+    <div class="wrap">
+      <p class="label created-label"><span class="hl">Can you learn all of that from tutorials?</span> Of course not!</p>
+      <h2 id="created-h" class="created-h">Which is why I created the</h2>
+      <div class="created-box">
+        <div class="created-head"><small>DEMOISELLE PIXEL</small><b>Academy</b></div>
+        <div class="created-body">
+          <p><b>Studio-Ready</b> is four online courses designed to take you from outside the studio to inside it. Whether you've never opened Maya or you're already the one fixing everyone's pipeline, there's a course written for exactly where you're standing, and each one stands on its own.</p>
+        </div>
+        <div class="created-band">
+          <p>Every lesson starts from a real production problem and the reason studios solve it the way they do. Then you build it yourself, in the same software and the same handoffs a real show uses.</p>
+          <p>You learn the way studios actually work, mistakes included. Mostly mine.</p>
+        </div>
+        <div class="created-body">
+          <p>Join the waitlist and be first in when doors open, with early-bird pricing.</p>
+          <p class="created-strong">Say yes to the studio. Start where you are.</p>
+        </div>
+      </div>
+      <div class="center created-cta"><a class="btn" href="#waitlist">Join the waitlist</a></div>
+    </div>
+  </section>
+
+  <!-- Hi, I'm Sophie -->
+  <section id="sophie" class="hi" aria-labelledby="sophie-h">
+    <div class="hi-photo">
+      <img src="img/sophie-hallway.jpg" width="1536" height="1024" alt="Sophie in a pink blazer at the end of a long wood-panelled hallway">
+      <div class="hi-title"><h2 id="sophie-h">Hi, I'm <span>Sophie</span></h2></div>
+    </div>
+    <div class="wrap">
+      <div class="founder">
+        <span class="pill">Founder of the</span>
+        <div class="wordmark"><small>DEMOISELLE PIXEL</small><b>Academy</b></div>
+        <p class="founder-sub">Studio-Ready Courses</p>
+        <ul class="ticks founder-list">
+          <li>I help <b>artists, career-changers and technical minds</b> like you get past the wall between outside the studio and inside it.</li>
+          <li>So you walk in knowing the map, the software, and how a studio really works.</li>
+        </ul>
+        <div class="quote">I learned it the hard way, so you don't have to.</div>
+        <div class="story">
+          <p>I spent eight years lighting and compositing shows at Atomic Cartoons, WildBrain, Mainframe and ICON Creative Studio, mostly learning on deadline, by breaking things. Then I moved to Foundry and spent three years helping more than 40 studios on two continents, and saw the same problems show up everywhere.</p>
+          <p>Since 2023 I've taught 3D animation and pipeline at Emily Carr University. Every term I watch talented people hit the same wall I hit. You don't need to be special to get through it. You need someone to show you the map.</p>
+        </div>
+        <span class="sign">Everyone can do this. Including you.</span>
+        <a class="btn" href="#waitlist">Join the waitlist</a>
       </div>
     </div>
   </section>
@@ -594,30 +719,6 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
     </div>
   </section>
 
-  <!-- Hi, I'm Sophie -->
-  <section id="sophie" class="hi" aria-labelledby="sophie-h">
-    <div class="hi-photo">
-      <img src="img/sophie-hallway.jpg" width="1536" height="1024" alt="Sophie in a pink blazer at the end of a long wood-panelled hallway">
-      <div class="hi-title"><h2 id="sophie-h">Hi, I'm <span>Sophie</span></h2></div>
-    </div>
-    <div class="wrap">
-      <div class="founder">
-        <span class="pill">Founder of the</span>
-        <div class="wordmark"><small>DEMOISELLE PIXEL</small><b>Academy</b></div>
-        <div class="story">
-          <p>I spent eight years lighting and compositing shows at Atomic Cartoons, WildBrain, Mainframe and ICON Creative Studio. I learned most of it the hard way: on deadline, by breaking things, and by asking the questions everyone else was too nervous to ask.</p>
-        </div>
-        <div class="quote">I learned it the hard way, so you don't have to.</div>
-        <div class="story">
-          <p>Then I moved to Foundry and spent three years helping more than 40 studios on two continents use their tools. I saw the same problems show up everywhere, and how differently each studio solves them. That's the part you can't get from a tutorial, and it's what I put in every lesson.</p>
-          <p>Since 2023 I've taught 3D animation and pipeline at Emily Carr University. Every term I watch talented people hit the same wall I hit. You don't need to be special to get through it. You need someone to show you the map.</p>
-        </div>
-        <span class="sign">Everyone can do this. Including you.</span>
-        <a class="btn" href="#waitlist">Join the waitlist</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Waitlist -->
   <section id="waitlist" class="join-sec" aria-labelledby="join-h">
     <div class="wrap join-grid">
@@ -673,18 +774,6 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
         <summary>How much does it cost?</summary>
         <p>Each course is priced on its own. Prices go to the waitlist first, along with early-bird pricing.</p>
       </details>
-    </div>
-  </section>
-
-  <!-- Open door -->
-  <section class="door" aria-labelledby="door-h">
-    <div class="wrap door-grid">
-      <div class="door-copy">
-        <h2 id="door-h" class="headline">Still not sure which one is yours? <span class="hl">Ask me.</span></h2>
-        <p>Everything here can be figured out. Write to me at info@demoisellepixel.com and tell me where you're stuck.</p>
-        <a class="btn" href="mailto:info@demoisellepixel.com?subject=Which%20course%20is%20for%20me%3F">Write to me</a>
-      </div>
-      <div class="door-photo"><img src="img/sophie-couch.jpg" width="1024" height="1536" alt="Sophie smiling on a leather sofa"></div>
     </div>
   </section>
 
