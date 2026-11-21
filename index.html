@@ -138,9 +138,10 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 /* Template layout: intro line across the top, cards ~62% on the left, phone on the right beside the heading */
 .back-intro { font-size: clamp(1.05rem, 1.5vw, 1.25rem); max-width: 70ch; margin-bottom: clamp(32px, 4vw, 48px); }
 /* Template positions: cards take the left ~55% of the screen, the phone sits on the far right edge of the content */
-.back-grid { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: clamp(40px, 10vw, 160px); align-items: start; }
-.back-grid .phone { justify-self: end; margin: 0; }
-@media (max-width: 960px) { .back-grid { grid-template-columns: 1fr; } .back-grid .phone { justify-self: center; } }
+/* Phone stays on the far right at every window width down to phone size; it only stacks on real phones */
+.back-grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(170px, 21vw, 270px); gap: clamp(28px, 9vw, 160px); align-items: start; }
+.back-grid .phone { justify-self: end; margin: 0; width: 100%; }
+@media (max-width: 640px) { .back-grid { grid-template-columns: 1fr; } .back-grid .phone { justify-self: center; width: min(260px, 75%); } }
 .rule { width: 84px; height: 1px; background: var(--caramel); margin-bottom: 28px; }
 .back h2 { font-size: clamp(2.2rem, 4.4vw, 3.8rem); color: var(--root); margin-bottom: 36px; }
 .cards { display: flex; flex-direction: column; gap: 22px; }
@@ -161,7 +162,6 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .phone::before { left: -4px; top: 20%; height: 8%; box-shadow: 0 90px 0 #C9C1B6; }
 .phone::after { right: -4px; top: 26%; height: 13%; }
 .phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 36px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
-@media (max-width: 960px) { .phone { width: min(300px, 80%); } }
 
 .truth { background: var(--navy); color: var(--on-navy); text-align: center; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 80px); margin-top: clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 22px; align-items: center; }
 .truth .spark { color: var(--caramel); font-size: 2rem; line-height: 1; }
@@ -239,10 +239,12 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .p-links a:hover { color: var(--yellow); }
 
 /* Just imagine */
-.imagine { position: relative; padding: 0; background: var(--navy); }
-.imagine-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); min-height: 100%; }
-@media (max-width: 900px) { .imagine-grid { grid-template-columns: 1fr; } }
-.imagine-photo { position: relative; min-height: 380px; }
+/* Template layout: the photo fills the whole section; the dark panel sits over it on the right, inset from the edges */
+.imagine { position: relative; padding: clamp(40px, 6vw, 80px) 0; background: var(--navy); overflow: hidden; }
+.imagine-grid { position: relative; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+.imagine-photo { position: absolute; top: calc(-1 * clamp(40px, 6vw, 80px)); bottom: calc(-1 * clamp(40px, 6vw, 80px)); left: 0; right: 30%; }
+.imagine-panel { grid-column: 2; position: relative; background: var(--navy); margin-right: clamp(16px, 4vw, 64px); box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+@media (max-width: 640px) { .imagine { padding-top: 300px; } .imagine-grid { grid-template-columns: 1fr; } .imagine-panel { grid-column: 1; margin: 0 16px; } .imagine-photo { inset: -300px 0 auto; height: 340px; } }
 .imagine-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
 .imagine-panel { color: var(--on-navy); padding: clamp(48px, 7vw, 96px) clamp(16px, 5vw, 72px); display: flex; flex-direction: column; gap: 30px; }
 .imagine-panel h2 { font: 300 clamp(2.6rem, 5vw, 4.2rem)/1 var(--display); color: var(--tan); text-align: center; }
