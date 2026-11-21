@@ -137,8 +137,10 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 /* Holding you back */
 /* Template layout: intro line across the top, cards ~62% on the left, phone on the right beside the heading */
 .back-intro { font-size: clamp(1.05rem, 1.5vw, 1.25rem); max-width: 70ch; margin-bottom: clamp(32px, 4vw, 48px); }
-.back-grid { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
-@media (max-width: 960px) { .back-grid { grid-template-columns: 1fr; } }
+/* Template positions: cards take the left ~55% of the screen, the phone sits on the far right edge of the content */
+.back-grid { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: clamp(40px, 10vw, 160px); align-items: start; }
+.back-grid .phone { justify-self: end; margin: 0; }
+@media (max-width: 960px) { .back-grid { grid-template-columns: 1fr; } .back-grid .phone { justify-self: center; } }
 .rule { width: 84px; height: 1px; background: var(--caramel); margin-bottom: 28px; }
 .back h2 { font-size: clamp(2.2rem, 4.4vw, 3.8rem); color: var(--root); margin-bottom: 36px; }
 .cards { display: flex; flex-direction: column; gap: 22px; }
@@ -152,13 +154,13 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .ticks li { position: relative; padding-left: 34px; }
 .ticks li::before { content: ""; position: absolute; left: 4px; top: 0.62em; width: 9px; height: 9px; background: var(--tan); transform: rotate(45deg); }
 /* Light silver phone frame, sitting beside the heading like the reference (not sticky) */
-.phone { position: relative; margin: 8px auto 0; width: min(330px, 100%); aspect-ratio: 9 / 18.5; padding: 9px; border-radius: 50px;
+.phone { position: relative; margin: 8px auto 0; width: min(270px, 100%); aspect-ratio: 9 / 18.5; padding: 9px; border-radius: 44px;
   background: linear-gradient(145deg, #F7F3EE 0%, #D9D2C8 45%, #EFEAE3 70%, #C9C1B6 100%);
   box-shadow: 0 0 0 1px #BDB4A8, 0 50px 80px -40px rgba(51, 36, 30, .55), 0 18px 40px -20px rgba(51, 36, 30, .25); }
 .phone::before, .phone::after { content: ""; position: absolute; width: 4px; border-radius: 2px; background: #C9C1B6; }
 .phone::before { left: -4px; top: 20%; height: 8%; box-shadow: 0 90px 0 #C9C1B6; }
 .phone::after { right: -4px; top: 26%; height: 13%; }
-.phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 41px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 36px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
 @media (max-width: 960px) { .phone { width: min(300px, 80%); } }
 
 .truth { background: var(--navy); color: var(--on-navy); text-align: center; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 80px); margin-top: clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 22px; align-items: center; }
