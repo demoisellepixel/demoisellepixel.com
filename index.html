@@ -47,6 +47,13 @@
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+/* The design is drawn for a ~1280px-wide screen. On wider screens, scale the whole page up
+   so it keeps the same full, bold proportions instead of shrinking into a narrow centre column. */
+@media (min-width: 1440px) { body { zoom: 1.12; } }
+@media (min-width: 1600px) { body { zoom: 1.25; } }
+@media (min-width: 1800px) { body { zoom: 1.4; } }
+@media (min-width: 2200px) { body { zoom: 1.7; } }
+@media (min-width: 2800px) { body { zoom: 2.1; } }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 p { margin: 0; }
