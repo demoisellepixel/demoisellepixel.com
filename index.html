@@ -47,7 +47,7 @@
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 p { margin: 0; }
 :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
@@ -289,7 +289,7 @@ details p { padding: 0 26px 24px; color: var(--muted); max-width: 70ch; }
 
 /* Open door */
 .door { padding-top: 0; }
-.door-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.door-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(32px, 5vw, 72px); align-items: center; background: var(--white); border: 1px solid var(--line); padding: clamp(24px, 4vw, 56px); max-width: 1120px; }
 @media (max-width: 860px) { .door-grid { grid-template-columns: 1fr; } }
 .door-copy { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
 .door-copy h2 { font-size: clamp(2.2rem, 4.6vw, 3.8rem); color: var(--root); }
@@ -407,7 +407,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
             </div>
           </div>
         </div>
-        <div class="phone"><img src="img/sophie-portrait.jpg" width="1024" height="1536" alt="Sophie smiling in a pink blazer" loading="lazy"></div>
+        <div class="phone"><img src="img/sophie-portrait.jpg" width="1024" height="1536" alt="Sophie smiling in a pink blazer"></div>
       </div>
 
       <div class="truth">
@@ -432,7 +432,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
             <div class="c-top"><span>Demoiselle Pixel</span><span>01</span></div>
             <div class="c-title" style="font-size:clamp(1.1rem,1.8vw,1.45rem)">The Breakthrough</div>
             <div class="c-sub">Studio Foundations · get hired</div>
-            <div class="c-art"><img src="img/sophie-desk.jpg" alt="" loading="lazy" style="object-position:50% 25%"></div>
+            <div class="c-art"><img src="img/sophie-desk.jpg" alt="" style="object-position:50% 25%"></div>
             <div class="c-foot">Sophie Désaulniers</div>
           </div></div>
           <div class="p-body">
@@ -510,7 +510,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <!-- Just imagine -->
   <section class="imagine" aria-labelledby="imagine-h">
     <div class="imagine-grid">
-      <div class="imagine-photo"><img src="img/studio-crowd.jpg" width="1536" height="1024" alt="A woman walking into a busy industry event with large screens" loading="lazy"></div>
+      <div class="imagine-photo"><img src="img/studio-crowd.jpg" width="1536" height="1024" alt="A woman walking into a busy industry event with large screens"></div>
       <div class="imagine-panel">
         <h2 id="imagine-h">Just imagine…</h2>
         <ul class="chev">
@@ -597,7 +597,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <!-- Hi, I'm Sophie -->
   <section id="sophie" class="hi" aria-labelledby="sophie-h">
     <div class="hi-photo">
-      <img src="img/sophie-hallway.jpg" width="1536" height="1024" alt="Sophie in a pink blazer at the end of a long wood-panelled hallway" loading="lazy">
+      <img src="img/sophie-hallway.jpg" width="1536" height="1024" alt="Sophie in a pink blazer at the end of a long wood-panelled hallway">
       <div class="hi-title"><h2 id="sophie-h">Hi, I'm <span>Sophie</span></h2></div>
     </div>
     <div class="wrap">
@@ -684,7 +684,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
         <p>Everything here can be figured out. Write to me at info@demoisellepixel.com and tell me where you're stuck.</p>
         <a class="btn" href="mailto:info@demoisellepixel.com?subject=Which%20course%20is%20for%20me%3F">Write to me</a>
       </div>
-      <div class="door-photo"><img src="img/sophie-couch.jpg" width="1024" height="1536" alt="Sophie smiling on a leather sofa" loading="lazy"></div>
+      <div class="door-photo"><img src="img/sophie-couch.jpg" width="1024" height="1536" alt="Sophie smiling on a leather sofa"></div>
     </div>
   </section>
 
