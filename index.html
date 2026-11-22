@@ -103,8 +103,8 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .hero-card { background: var(--white); padding: clamp(32px, 5vw, 64px) clamp(16px, 5vw, 64px) clamp(28px, 4vw, 56px); display: flex; flex-direction: column; align-items: center; gap: clamp(24px, 3vw, 36px); text-align: center; }
 .hero h1 { font-size: clamp(2.6rem, 7.4vw, 6.4rem); max-width: 14ch; color: var(--root); }
 .hero .pill { color: var(--root); }
-.hero-photo { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: 55% 40%; }
-@media (max-width: 640px) { .hero-photo { aspect-ratio: 4 / 3.4; object-position: 66% 40%; } }
+.hero-photo { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: 50% 12%; }
+@media (max-width: 640px) { .hero-photo { aspect-ratio: 4 / 3.4; object-position: 12% 15%; } }
 .hero-after { display: flex; flex-direction: column; align-items: center; gap: 26px; margin-top: clamp(36px, 5vw, 56px); text-align: center; }
 .hero-after p { font-size: clamp(1.05rem, 1.6vw, 1.3rem); max-width: 56ch; }
 .hero-after strong { font-family: var(--display); font-weight: 800; font-size: clamp(1.15rem, 1.8vw, 1.45rem); }
@@ -161,7 +161,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .phone::before, .phone::after { content: ""; position: absolute; width: 4px; border-radius: 2px; background: #C9C1B6; }
 .phone::before { left: -4px; top: 20%; height: 8%; box-shadow: 0 90px 0 #C9C1B6; }
 .phone::after { right: -4px; top: 26%; height: 13%; }
-.phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 36px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
+.phone img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 36px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
 
 .truth { background: var(--navy); color: var(--on-navy); text-align: center; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 80px); margin-top: clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 22px; align-items: center; }
 .truth .spark { color: var(--caramel); font-size: 2rem; line-height: 1; }
@@ -177,7 +177,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .notes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); }
 @media (max-width: 640px) { .notes-grid { grid-template-columns: 1fr; row-gap: 90px; } }
 .note { margin: 70px 0 0; background: var(--cream); padding: 96px clamp(24px, 4vw, 64px) 40px; text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; gap: 24px; }
-.note-photo { position: absolute; top: -70px; left: 50%; transform: translateX(-50%); width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 4px solid var(--white); }
+.note-photo { position: absolute; top: -70px; left: 50%; transform: translateX(-50%); width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: 50% 40%; border: 4px solid var(--white); }
 .note blockquote { margin: 0; font-size: 1.08rem; line-height: 1.85; }
 .note-sign { font-family: var(--script); font-size: 2.8rem; line-height: 1; color: var(--caramel-dk); }
 
@@ -243,7 +243,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .imagine-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); min-height: 100%; }
 @media (max-width: 640px) { .imagine-grid { grid-template-columns: 1fr; } }
 .imagine-photo { position: relative; min-height: 380px; }
-.imagine-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.imagine-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 31% 50%; }
 .imagine-panel { color: var(--on-navy); padding: clamp(48px, 7vw, 96px) clamp(16px, 5vw, 72px); display: flex; flex-direction: column; gap: 30px; }
 .imagine-panel h2 { font: 300 clamp(2.6rem, 5vw, 4.2rem)/1 var(--display); color: var(--tan); text-align: center; }
 .chev { list-style: none; margin: 0; padding: 0; }
@@ -297,9 +297,9 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 /* Hi, I'm Sophie */
 .hi { padding: 0; background: var(--white); }
 .hi-photo { position: relative; height: clamp(380px, 52vw, 640px); overflow: hidden; }
-.hi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% 40%; }
+.hi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
 .hi-photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(51,36,30,.45), rgba(51,36,30,.15) 70%); }
-.hi-title { position: absolute; inset: 0 0 clamp(60px, 10vw, 140px); z-index: 1; display: flex; align-items: center; justify-content: center; padding-inline: 16px; color: #fff; text-align: center; }
+.hi-title { position: absolute; inset: 0 0 clamp(70px, 11vw, 150px); z-index: 1; display: flex; align-items: flex-end; justify-content: center; padding-inline: 16px; color: #fff; text-align: center; }
 .founder-sub { font: 800 clamp(1.4rem, 2.6vw, 2rem)/1.1 var(--display); color: var(--root); margin-top: -8px; }
 .founder-list { align-self: stretch; font-size: 1.05rem; gap: 16px; }
 .hi-title h2 { font: 800 clamp(3rem, 8vw, 6.4rem)/1 var(--display); letter-spacing: -0.02em; text-shadow: 0 2px 30px rgba(0,0,0,.25); }
@@ -380,7 +380,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
       <div class="hero-card">
         <h1 class="headline">The course that didn't exist when I <span class="hl">needed it.</span></h1>
         <span class="pill label">Studio-Ready · VFX, animation &amp; games</span>
-        <img class="hero-photo" src="img/sophie-social.jpg" width="1536" height="1024" alt="Sophie Désaulniers in a pink blazer, sitting on a leather sofa" fetchpriority="high">
+        <img class="hero-photo" src="img/sophie-katana-user-group-panel.jpg" width="1440" height="1080" alt="Sophie Désaulniers, VFX lighting and compositing artist, smiling at the podium as she hosts a Foundry Katana panel at a Katana User Group event" fetchpriority="high">
       </div>
       <div class="hero-after">
         <p>Whether you're just starting out, sending applications into silence, ready to go technical, or curious how the pipeline gets built, there's a way into the studio. I'll show you how studios really work, mistakes included. Mostly mine.</p>
@@ -416,7 +416,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
             <div class="c-top"><span>Demoiselle Pixel</span><span>01</span></div>
             <div class="c-title">The Breakthrough</div>
             <div class="c-sub">Studio Foundations · get hired</div>
-            <div class="c-art"><img src="img/sophie-desk.jpg" alt="" style="object-position:50% 25%"></div>
+            <div class="c-art"><img src="img/sophie-profile.jpg" alt="Sophie Désaulniers, founder of Demoiselle Pixel Academy and VFX lighting and compositing artist" style="object-position:50% 30%"></div>
             <div class="c-foot">Sophie Désaulniers</div>
           </div></div>
           <div class="p-body">
@@ -531,7 +531,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
             </div>
           </div>
         </div>
-        <div class="phone"><img src="img/sophie-portrait.jpg" width="1024" height="1536" alt="Sophie smiling in a pink blazer"></div>
+        <div class="phone"><img src="img/sophie-foundry-booth.webp" width="1222" height="2172" alt="Sophie Désaulniers presenting Foundry Katana demos at the Foundry booth, with the Katana interface on screen and Nuke, Katana and Mari logos behind her" style="object-position: 88% 50%"></div>
       </div>
 
       <div class="truth">
@@ -546,17 +546,18 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <div class="meanwhile-band"><p class="meanwhile">Meanwhile, the shows keep shipping.<span>And you know deep down it's your turn.</span></p></div>
 
   <!-- Two quote cards with round photos and a signature, like the template's testimonial row -->
-  <section class="notes" aria-label="Notes from Sophie">
+  <!-- Testimonials: hidden until there are real quotes from people who took a course (name, photo, permission). Remove "hidden" to show. -->
+  <section class="notes" aria-label="What people say" hidden>
     <div class="wrap notes-grid">
       <figure class="note">
-        <img class="note-photo" src="img/sophie-desk.jpg" width="1024" height="1536" alt="Sophie at her desk">
-        <blockquote>"I learned lighting and comp <b>on deadline, by breaking things</b>, and by asking the questions everyone else was too nervous to ask. <b>You shouldn't have to learn it that way.</b>"</blockquote>
-        <figcaption class="note-sign">Sophie</figcaption>
+        <img class="note-photo" src="img/favicon.png" width="400" height="400" alt="">
+        <blockquote>"Real quote from someone who took the course goes here."</blockquote>
+        <figcaption class="note-sign">First name</figcaption>
       </figure>
       <figure class="note">
-        <img class="note-photo" src="img/sophie-couch.jpg" width="1024" height="1536" alt="Sophie on a leather sofa">
-        <blockquote>"Every term I watch talented people hit the same wall I hit. <b>You don't need to be special to get through it.</b> You need someone to show you the map, <b>and that's what every lesson is.</b>"</blockquote>
-        <figcaption class="note-sign">Sophie</figcaption>
+        <img class="note-photo" src="img/favicon.png" width="400" height="400" alt="">
+        <blockquote>"Real quote from someone who took the course goes here."</blockquote>
+        <figcaption class="note-sign">First name</figcaption>
       </figure>
     </div>
   </section>
@@ -586,7 +587,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <!-- Just imagine -->
   <section class="imagine" aria-labelledby="imagine-h">
     <div class="imagine-grid">
-      <div class="imagine-photo"><img src="img/studio-crowd.jpg" width="1536" height="1024" alt="A woman walking into a busy industry event with large screens"></div>
+      <div class="imagine-photo"><img src="img/sophie-katana-user-group-stage.jpg" width="1440" height="1080" alt="Sophie Désaulniers, VFX lighting and compositing artist, presenting Foundry Katana on stage at a Katana User Group event, with the Katana interface on the screen behind her"></div>
       <div class="imagine-panel">
         <h2 id="imagine-h">Just imagine…</h2>
         <ul class="chev">
@@ -632,7 +633,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <!-- Hi, I'm Sophie -->
   <section id="sophie" class="hi" aria-labelledby="sophie-h">
     <div class="hi-photo">
-      <img src="img/sophie-hallway.jpg" width="1536" height="1024" alt="Sophie in a pink blazer at the end of a long wood-panelled hallway">
+      <img src="img/sophie-katana-user-group-team.jpg" width="1440" height="1080" alt="Sophie Désaulniers with fellow speakers after hosting a Foundry Katana panel at a Katana User Group event">
       <div class="hi-title"><h2 id="sophie-h">Hi, I'm <span>Sophie</span></h2></div>
     </div>
     <div class="wrap">
