@@ -161,7 +161,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .phone::before, .phone::after { content: ""; position: absolute; width: 4px; border-radius: 2px; background: #C9C1B6; }
 .phone::before { left: -4px; top: 20%; height: 8%; box-shadow: 0 90px 0 #C9C1B6; }
 .phone::after { right: -4px; top: 26%; height: 13%; }
-.phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 36px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
+.phone img, .phone video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: 36px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
 
 .truth { background: var(--navy); color: var(--on-navy); text-align: center; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 80px); margin-top: clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 22px; align-items: center; }
 .truth .spark { color: var(--caramel); font-size: 2rem; line-height: 1; }
@@ -297,9 +297,9 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 /* Hi, I'm Sophie */
 .hi { padding: 0; background: var(--white); }
 .hi-photo { position: relative; height: clamp(380px, 52vw, 640px); overflow: hidden; }
-.hi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% 40%; }
+.hi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
 .hi-photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(51,36,30,.45), rgba(51,36,30,.15) 70%); }
-.hi-title { position: absolute; inset: 0 0 clamp(60px, 10vw, 140px); z-index: 1; display: flex; align-items: center; justify-content: center; padding-inline: 16px; color: #fff; text-align: center; }
+.hi-title { position: absolute; inset: 0 0 clamp(70px, 11vw, 150px); z-index: 1; display: flex; align-items: flex-end; justify-content: center; padding-inline: 16px; color: #fff; text-align: center; }
 .founder-sub { font: 800 clamp(1.4rem, 2.6vw, 2rem)/1.1 var(--display); color: var(--root); margin-top: -8px; }
 .founder-list { align-self: stretch; font-size: 1.05rem; gap: 16px; }
 .hi-title h2 { font: 800 clamp(3rem, 8vw, 6.4rem)/1 var(--display); letter-spacing: -0.02em; text-shadow: 0 2px 30px rgba(0,0,0,.25); }
@@ -416,7 +416,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
             <div class="c-top"><span>Demoiselle Pixel</span><span>01</span></div>
             <div class="c-title">The Breakthrough</div>
             <div class="c-sub">Studio Foundations · get hired</div>
-            <div class="c-art"><img src="img/sophie-desk.jpg" alt="" style="object-position:50% 25%"></div>
+            <div class="c-art"><img src="img/sophie-profile.jpg" alt="Sophie Désaulniers, founder of Demoiselle Pixel Academy and VFX lighting and compositing artist" style="object-position:50% 30%"></div>
             <div class="c-foot">Sophie Désaulniers</div>
           </div></div>
           <div class="p-body">
@@ -531,7 +531,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
             </div>
           </div>
         </div>
-        <div class="phone"><img src="img/sophie-portrait.jpg" width="1024" height="1536" alt="Sophie smiling in a pink blazer"></div>
+        <div class="phone"><video src="img/sophie-foundry-booth.mp4" poster="img/sophie-profile.jpg" width="480" height="854" autoplay muted loop playsinline preload="metadata" aria-label="Short clip from the Foundry booth where Sophie Désaulniers gave live Foundry Katana demos on look development templates and pipeline integration"></video></div>
       </div>
 
       <div class="truth">
@@ -633,7 +633,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <!-- Hi, I'm Sophie -->
   <section id="sophie" class="hi" aria-labelledby="sophie-h">
     <div class="hi-photo">
-      <img src="img/sophie-hallway.jpg" width="1536" height="1024" alt="Sophie in a pink blazer at the end of a long wood-panelled hallway">
+      <img src="img/sophie-katana-user-group-team.jpg" width="1440" height="1080" alt="Sophie Désaulniers with fellow speakers after hosting a Foundry Katana panel at a Katana User Group event">
       <div class="hi-title"><h2 id="sophie-h">Hi, I'm <span>Sophie</span></h2></div>
     </div>
     <div class="wrap">
@@ -794,6 +794,8 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
 </footer>
 
 <script>
+// Respect "reduce motion": keep the booth clip still on its poster frame.
+if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) { document.querySelectorAll("video[autoplay]").forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); }); }
 document.getElementById('join-form').addEventListener('submit', function (e) {
   e.preventDefault();
   var name = document.getElementById('f-name').value.trim();
