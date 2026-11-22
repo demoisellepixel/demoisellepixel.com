@@ -103,8 +103,8 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .hero-card { background: var(--white); padding: clamp(32px, 5vw, 64px) clamp(16px, 5vw, 64px) clamp(28px, 4vw, 56px); display: flex; flex-direction: column; align-items: center; gap: clamp(24px, 3vw, 36px); text-align: center; }
 .hero h1 { font-size: clamp(2.6rem, 7.4vw, 6.4rem); max-width: 14ch; color: var(--root); }
 .hero .pill { color: var(--root); }
-.hero-photo { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: 55% 40%; }
-@media (max-width: 640px) { .hero-photo { aspect-ratio: 4 / 3.4; object-position: 66% 40%; } }
+.hero-photo { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: 50% 12%; }
+@media (max-width: 640px) { .hero-photo { aspect-ratio: 4 / 3.4; object-position: 12% 15%; } }
 .hero-after { display: flex; flex-direction: column; align-items: center; gap: 26px; margin-top: clamp(36px, 5vw, 56px); text-align: center; }
 .hero-after p { font-size: clamp(1.05rem, 1.6vw, 1.3rem); max-width: 56ch; }
 .hero-after strong { font-family: var(--display); font-weight: 800; font-size: clamp(1.15rem, 1.8vw, 1.45rem); }
@@ -380,7 +380,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
       <div class="hero-card">
         <h1 class="headline">The course that didn't exist when I <span class="hl">needed it.</span></h1>
         <span class="pill label">Studio-Ready · VFX, animation &amp; games</span>
-        <img class="hero-photo" src="img/sophie-social.jpg" width="1536" height="1024" alt="Sophie Désaulniers in a pink blazer, sitting on a leather sofa" fetchpriority="high">
+        <img class="hero-photo" src="img/sophie-katana-user-group-panel.jpg" width="1440" height="1080" alt="Sophie Désaulniers, VFX lighting and compositing artist, smiling at the podium as she hosts a Foundry Katana panel at a Katana User Group event" fetchpriority="high">
       </div>
       <div class="hero-after">
         <p>Whether you're just starting out, sending applications into silence, ready to go technical, or curious how the pipeline gets built, there's a way into the studio. I'll show you how studios really work, mistakes included. Mostly mine.</p>
@@ -546,17 +546,18 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <div class="meanwhile-band"><p class="meanwhile">Meanwhile, the shows keep shipping.<span>And you know deep down it's your turn.</span></p></div>
 
   <!-- Two quote cards with round photos and a signature, like the template's testimonial row -->
-  <section class="notes" aria-label="Notes from Sophie">
+  <!-- Testimonials: hidden until there are real quotes from people who took a course (name, photo, permission). Remove "hidden" to show. -->
+  <section class="notes" aria-label="What people say" hidden>
     <div class="wrap notes-grid">
       <figure class="note">
-        <img class="note-photo" src="img/sophie-katana-user-group-podium-face.jpg" width="400" height="400" alt="Sophie Désaulniers smiling at the podium while presenting Foundry Katana at a Katana User Group event">
-        <blockquote>"I learned lighting and comp <b>on deadline, by breaking things</b>, and by asking the questions everyone else was too nervous to ask. <b>You shouldn't have to learn it that way.</b>"</blockquote>
-        <figcaption class="note-sign">Sophie</figcaption>
+        <img class="note-photo" src="img/favicon.png" width="400" height="400" alt="">
+        <blockquote>"Real quote from someone who took the course goes here."</blockquote>
+        <figcaption class="note-sign">First name</figcaption>
       </figure>
       <figure class="note">
-        <img class="note-photo" src="img/sophie-katana-user-group-mic-face.jpg" width="400" height="400" alt="Sophie Désaulniers speaking into a microphone during a Katana lighting presentation at a Katana User Group event">
-        <blockquote>"Every term I watch talented people hit the same wall I hit. <b>You don't need to be special to get through it.</b> You need someone to show you the map, <b>and that's what every lesson is.</b>"</blockquote>
-        <figcaption class="note-sign">Sophie</figcaption>
+        <img class="note-photo" src="img/favicon.png" width="400" height="400" alt="">
+        <blockquote>"Real quote from someone who took the course goes here."</blockquote>
+        <figcaption class="note-sign">First name</figcaption>
       </figure>
     </div>
   </section>
