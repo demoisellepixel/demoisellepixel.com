@@ -177,7 +177,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .notes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); }
 @media (max-width: 640px) { .notes-grid { grid-template-columns: 1fr; row-gap: 90px; } }
 .note { margin: 70px 0 0; background: var(--cream); padding: 96px clamp(24px, 4vw, 64px) 40px; text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; gap: 24px; }
-.note-photo { position: absolute; top: -70px; left: 50%; transform: translateX(-50%); width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 4px solid var(--white); }
+.note-photo { position: absolute; top: -70px; left: 50%; transform: translateX(-50%); width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: 50% 40%; border: 4px solid var(--white); }
 .note blockquote { margin: 0; font-size: 1.08rem; line-height: 1.85; }
 .note-sign { font-family: var(--script); font-size: 2.8rem; line-height: 1; color: var(--caramel-dk); }
 
@@ -243,7 +243,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .imagine-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); min-height: 100%; }
 @media (max-width: 640px) { .imagine-grid { grid-template-columns: 1fr; } }
 .imagine-photo { position: relative; min-height: 380px; }
-.imagine-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.imagine-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 31% 50%; }
 .imagine-panel { color: var(--on-navy); padding: clamp(48px, 7vw, 96px) clamp(16px, 5vw, 72px); display: flex; flex-direction: column; gap: 30px; }
 .imagine-panel h2 { font: 300 clamp(2.6rem, 5vw, 4.2rem)/1 var(--display); color: var(--tan); text-align: center; }
 .chev { list-style: none; margin: 0; padding: 0; }
@@ -549,12 +549,12 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <section class="notes" aria-label="Notes from Sophie">
     <div class="wrap notes-grid">
       <figure class="note">
-        <img class="note-photo" src="img/sophie-desk.jpg" width="1024" height="1536" alt="Sophie at her desk">
+        <img class="note-photo" src="img/sophie-katana-user-group-podium-face.jpg" width="400" height="400" alt="Sophie Désaulniers smiling at the podium while presenting Foundry Katana at a Katana User Group event">
         <blockquote>"I learned lighting and comp <b>on deadline, by breaking things</b>, and by asking the questions everyone else was too nervous to ask. <b>You shouldn't have to learn it that way.</b>"</blockquote>
         <figcaption class="note-sign">Sophie</figcaption>
       </figure>
       <figure class="note">
-        <img class="note-photo" src="img/sophie-couch.jpg" width="1024" height="1536" alt="Sophie on a leather sofa">
+        <img class="note-photo" src="img/sophie-katana-user-group-mic-face.jpg" width="400" height="400" alt="Sophie Désaulniers speaking into a microphone during a Katana lighting presentation at a Katana User Group event">
         <blockquote>"Every term I watch talented people hit the same wall I hit. <b>You don't need to be special to get through it.</b> You need someone to show you the map, <b>and that's what every lesson is.</b>"</blockquote>
         <figcaption class="note-sign">Sophie</figcaption>
       </figure>
@@ -586,7 +586,7 @@ footer .wrap { padding-block: 64px 32px; display: flex; flex-direction: column; 
   <!-- Just imagine -->
   <section class="imagine" aria-labelledby="imagine-h">
     <div class="imagine-grid">
-      <div class="imagine-photo"><img src="img/studio-crowd.jpg" width="1536" height="1024" alt="A woman walking into a busy industry event with large screens"></div>
+      <div class="imagine-photo"><img src="img/sophie-katana-user-group-stage.jpg" width="1440" height="1080" alt="Sophie Désaulniers, VFX lighting and compositing artist, presenting Foundry Katana on stage at a Katana User Group event, with the Katana interface on the screen behind her"></div>
       <div class="imagine-panel">
         <h2 id="imagine-h">Just imagine…</h2>
         <ul class="chev">
